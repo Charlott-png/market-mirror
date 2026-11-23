@@ -1,0 +1,2 @@
+{% from 'macros.html' import card with context %}
+{% for product in items %}{{ card(product, own|default(false)) }}{% else %}<div class="panel"><h2>No products found</h2><p>Try another search or check back after new listings are added.</p></div>{% endfor %}

@@ -1,0 +1,125 @@
+{
+  "created": "2026-10-26",
+  "method": "Built-in image_gen; one generation per product",
+  "items": [
+    {
+      "id": 1,
+      "title": "Study desk lamp",
+      "slug": "study-desk-lamp",
+      "old": "7040661fdcf84fc8ac178b4321c7cdf5.jpg",
+      "source": "C:\\Users\\Amaal\\.codex\\generated_images\\01a16ea2-8aaf-7e91-9b4d-98de0f7a0d16\\exec-1d6d4253-c401-4f39-a7e7-3a12719cac4d.png",
+      "prompt": "Use case: product-mockup. Asset type: product listing picture for Market Mirror, a fictional student demo marketplace. Create a photorealistic studio product photograph of a single adjustable study desk lamp, clearly recognisable as a real lamp, not a drawing or icon. Matte metal shade, articulated arm and stable round base, subtle signs of gentle use. Neutral light studio background, soft daylight and natural contact shadow. Entire object centred with generous margins for website thumbnail cropping, landscape 4:3 composition. No people, unrelated props, branding, price or advertising text. Include a small readable unobtrusive label \"AI-generated demo\" near the lower edge so this cannot be mistaken for a photo of an actual item for sale.",
+      "file": "study-desk-lamp.png"
+    },
+    {
+      "id": 2,
+      "title": "Python learning book",
+      "slug": "python-learning-book",
+      "old": "bab7a14ebf434f7585354dcdd4e2d686.jpg",
+      "subject": "One tangible beginner Python programming paperback book, standing at a slight three-quarter angle, visible paper page edges and spine, clean blue printed cover with the exact simple title \"Learning Python\", a small code-bracket motif, no author or publisher name, like-new condition. Make it unmistakably a real physical book, not an e-book screen.",
+      "prompt": "Use case: product-mockup. Asset type: product listing picture for Market Mirror, a fictional student demo marketplace. Create a photorealistic studio product photograph, not a drawing, cartoon, icon or collage. Neutral light studio background, soft daylight, realistic materials and natural contact shadow. Entire subject centred with generous margins for website thumbnail cropping, landscape 4:3 composition. No people, unrelated props, real brand logos, price or advertising text. Include a small readable unobtrusive label \"AI-generated demo\" near the lower edge so this cannot be mistaken for a photo of an actual item for sale. Subject: One tangible beginner Python programming paperback book, standing at a slight three-quarter angle, visible paper page edges and spine, clean blue printed cover with the exact simple title \"Learning Python\", a small code-bracket motif, no author or publisher name, like-new condition. Make it unmistakably a real physical book, not an e-book screen.",
+      "source": "C:\\Users\\Amaal\\.codex\\generated_images\\01a16ea2-8aaf-7e91-9b4d-98de0f7a0d16\\exec-11903308-abc7-455a-9609-18d3331e7dc9.png",
+      "file": "python-learning-book.png"
+    },
+    {
+      "id": 3,
+      "title": "Wireless keyboard",
+      "slug": "wireless-keyboard",
+      "old": "3415167d8a4c4f9291f230efaacbf85a.jpg",
+      "subject": "A single slim wireless computer keyboard with realistic spaced QWERTY keys, no cable, slightly elevated three-quarter overhead view, subtle gentle-use wear, no mouse or computer.",
+      "prompt": "Use case: product-mockup. Asset type: product listing picture for Market Mirror, a fictional student demo marketplace. Create a photorealistic studio product photograph, not a drawing, cartoon, icon or collage. Neutral light studio background, soft daylight, realistic materials and natural contact shadow. Entire subject centred with generous margins for website thumbnail cropping, landscape 4:3 composition. No people, unrelated props, real brand logos, price or advertising text. Include a small readable unobtrusive label \"AI-generated demo\" near the lower edge so this cannot be mistaken for a photo of an actual item for sale. Subject: A single slim wireless computer keyboard with realistic spaced QWERTY keys, no cable, slightly elevated three-quarter overhead view, subtle gentle-use wear, no mouse or computer.",
+      "source": "C:\\Users\\Amaal\\.codex\\generated_images\\01a16ea2-8aaf-7e91-9b4d-98de0f7a0d16\\exec-ff98f842-ee2c-4689-91e6-39a974dc70ab.png",
+      "file": "wireless-keyboard.png"
+    },
+    {
+      "id": 4,
+      "title": "Canvas tote bag",
+      "slug": "canvas-tote-bag",
+      "old": "24a24d10af644ce2bb3c37c1ce5d3163.jpg",
+      "subject": "A single plain natural cotton canvas tote bag with two long stitched handles, realistic woven cotton texture, slight natural folds, empty upright bag, new condition, no logo or decorative print.",
+      "prompt": "Use case: product-mockup. Asset type: product listing picture for Market Mirror, a fictional student demo marketplace. Create a photorealistic studio product photograph, not a drawing, cartoon, icon or collage. Neutral light studio background, soft daylight, realistic materials and natural contact shadow. Entire subject centred with generous margins for website thumbnail cropping, landscape 4:3 composition. No people, unrelated props, real brand logos, price or advertising text. Include a small readable unobtrusive label \"AI-generated demo\" near the lower edge so this cannot be mistaken for a photo of an actual item for sale. Subject: A single plain natural cotton canvas tote bag with two long stitched handles, realistic woven cotton texture, slight natural folds, empty upright bag, new condition, no logo or decorative print.",
+      "source": "C:\\Users\\Amaal\\.codex\\generated_images\\01a16ea2-8aaf-7e91-9b4d-98de0f7a0d16\\exec-bdaf51df-77d6-40c5-b052-bb71d04ddcd3.png",
+      "file": "canvas-tote-bag.png"
+    },
+    {
+      "id": 5,
+      "title": "Basketball",
+      "slug": "basketball",
+      "old": "e1f655ba93004e8cb372638b5b45d4ad.jpg",
+      "subject": "One standard orange basketball with realistic pebbled rubber surface, clear black curved seam channels, subtle signs of gentle use, sitting on the studio surface. No hoop, other sports equipment or brand logo.",
+      "prompt": "Use case: product-mockup. Asset type: product listing picture for Market Mirror, a fictional student demo marketplace. Create a photorealistic studio product photograph, not a drawing, cartoon, icon or collage. Neutral light studio background, soft daylight, realistic materials and natural contact shadow. Entire subject centred with generous margins for website thumbnail cropping, landscape 4:3 composition. No people, unrelated props, real brand logos, price or advertising text. Include a small readable unobtrusive label \"AI-generated demo\" near the lower edge so this cannot be mistaken for a photo of an actual item for sale. Subject: One standard orange basketball with realistic pebbled rubber surface, clear black curved seam channels, subtle signs of gentle use, sitting on the studio surface. No hoop, other sports equipment or brand logo.",
+      "source": "C:\\Users\\Amaal\\.codex\\generated_images\\01a16ea2-8aaf-7e91-9b4d-98de0f7a0d16\\exec-1f9748d6-b9b8-44d7-a74e-78531bb178cb.png",
+      "file": "basketball.png"
+    },
+    {
+      "id": 6,
+      "title": "Board game collection",
+      "slug": "board-game-collection",
+      "old": "8a125fbc013d403ab1cf276831d28bbe.jpg",
+      "subject": "A small collection of three fictional boxed board games arranged neatly with one partially open box showing a folded game board, a few wooden game pieces and two dice. Real cardboard textures, simple tasteful geometric cover art, no real brands or licensed characters. Like-new condition, recognisable as physical board games.",
+      "prompt": "Use case: product-mockup. Asset type: product listing picture for Market Mirror, a fictional student demo marketplace. Create a photorealistic studio product photograph, not a drawing, cartoon, icon or collage. Neutral light studio background, soft daylight, realistic materials and natural contact shadow. Entire subject centred with generous margins for website thumbnail cropping, landscape 4:3 composition. No people, unrelated props, real brand logos, price or advertising text. Include a small readable unobtrusive label \"AI-generated demo\" near the lower edge so this cannot be mistaken for a photo of an actual item for sale. Subject: A small collection of three fictional boxed board games arranged neatly with one partially open box showing a folded game board, a few wooden game pieces and two dice. Real cardboard textures, simple tasteful geometric cover art, no real brands or licensed characters. Like-new condition, recognisable as physical board games.",
+      "source": "C:\\Users\\Amaal\\.codex\\generated_images\\01a16ea2-8aaf-7e91-9b4d-98de0f7a0d16\\exec-7072953d-fd99-4c41-ac95-623b80636882.png",
+      "file": "board-game-collection.png"
+    },
+    {
+      "id": 7,
+      "title": "Portable speaker",
+      "slug": "portable-speaker",
+      "old": "621835ef615843bf8ada5aab8e3ffc28.jpg",
+      "subject": "One compact portable wireless speaker with a dark woven fabric grille, rounded body, small rubber playback buttons and short carrying loop. Realistically visible light scuffs from use, no severe damage, no brand logo, no phone or other objects.",
+      "prompt": "Use case: product-mockup. Asset type: product listing picture for Market Mirror, a fictional student demo marketplace. Create a photorealistic studio product photograph, not a drawing, cartoon, icon or collage. Neutral light studio background, soft daylight, realistic materials and natural contact shadow. Entire subject centred with generous margins for website thumbnail cropping, landscape 4:3 composition. No people, unrelated props, real brand logos, price or advertising text. Include a small readable unobtrusive label \"AI-generated demo\" near the lower edge so this cannot be mistaken for a photo of an actual item for sale. Subject: One compact portable wireless speaker with a dark woven fabric grille, rounded body, small rubber playback buttons and short carrying loop. Realistically visible light scuffs from use, no severe damage, no brand logo, no phone or other objects.",
+      "source": "C:\\Users\\Amaal\\.codex\\generated_images\\01a16ea2-8aaf-7e91-9b4d-98de0f7a0d16\\exec-7b23e448-e7fa-42f4-a9b4-d433e93a3f9e.png",
+      "file": "portable-speaker.png"
+    },
+    {
+      "id": 8,
+      "title": "Ceramic plant pot",
+      "slug": "ceramic-plant-pot",
+      "old": "2c80986dc2b5443a928013a4aee39805.jpg",
+      "subject": "One empty medium ceramic plant pot with a subtle warm neutral glazed finish, realistic rim and hollow interior visible at a slight elevated three-quarter angle. New condition. No plant, soil, flowers or unrelated objects.",
+      "prompt": "Use case: product-mockup. Asset type: product listing picture for Market Mirror, a fictional student demo marketplace. Create a photorealistic studio product photograph, not a drawing, cartoon, icon or collage. Neutral light studio background, soft daylight, realistic materials and natural contact shadow. Entire subject centred with generous margins for website thumbnail cropping, landscape 4:3 composition. No people, unrelated props, real brand logos, price or advertising text. Include a small readable unobtrusive label \"AI-generated demo\" near the lower edge so this cannot be mistaken for a photo of an actual item for sale. Subject: One empty medium ceramic plant pot with a subtle warm neutral glazed finish, realistic rim and hollow interior visible at a slight elevated three-quarter angle. New condition. No plant, soil, flowers or unrelated objects.",
+      "source": "C:\\Users\\Amaal\\.codex\\generated_images\\01a16ea2-8aaf-7e91-9b4d-98de0f7a0d16\\exec-7e1e42ce-7edc-4701-961b-ae52ef9cdbf7.png",
+      "file": "ceramic-plant-pot.png"
+    },
+    {
+      "id": 9,
+      "title": "Winter jacket",
+      "slug": "winter-jacket",
+      "old": "7b2933656f9d4d3fb35cc5b14c76865b.jpg",
+      "subject": "One warm padded winter jacket in dark neutral blue, zipped front, two pockets, hood and long sleeves. Lay it neatly flat with the entire silhouette visible and sleeves naturally arranged. Real fabric stitching, quilting, gentle-use creases. No person, mannequin, hanger or logo.",
+      "prompt": "Use case: product-mockup. Asset type: product listing picture for Market Mirror, a fictional student demo marketplace. Create a photorealistic studio product photograph, not a drawing, cartoon, icon or collage. Neutral light studio background, soft daylight, realistic materials and natural contact shadow. Entire subject centred with generous margins for website thumbnail cropping, landscape 4:3 composition. No people, unrelated props, real brand logos, price or advertising text. Include a small readable unobtrusive label \"AI-generated demo\" near the lower edge so this cannot be mistaken for a photo of an actual item for sale. Subject: One warm padded winter jacket in dark neutral blue, zipped front, two pockets, hood and long sleeves. Lay it neatly flat with the entire silhouette visible and sleeves naturally arranged. Real fabric stitching, quilting, gentle-use creases. No person, mannequin, hanger or logo.",
+      "source": "C:\\Users\\Amaal\\.codex\\generated_images\\01a16ea2-8aaf-7e91-9b4d-98de0f7a0d16\\exec-701d791d-1438-4d19-86c7-8adbdfb6c33c.png",
+      "file": "winter-jacket.png"
+    },
+    {
+      "id": 10,
+      "title": "Adventure novel set",
+      "slug": "adventure-novel-set",
+      "old": "67f69e87a3314f409c09ddb20652c74f.jpg",
+      "subject": "A set of three physical adventure paperback novels, standing together at a three-quarter angle with one cover visible. Fictional mountain, forest and compass cover art with simple invented titles, no real authors or publishers. Noticeable gently worn paper corners and slightly aged page edges, not damaged. Clearly books, not digital screens.",
+      "prompt": "Use case: product-mockup. Asset type: product listing picture for Market Mirror, a fictional student demo marketplace. Create a photorealistic studio product photograph, not a drawing, cartoon, icon or collage. Neutral light studio background, soft daylight, realistic materials and natural contact shadow. Entire subject centred with generous margins for website thumbnail cropping, landscape 4:3 composition. No people, unrelated props, real brand logos, price or advertising text. Include a small readable unobtrusive label \"AI-generated demo\" near the lower edge so this cannot be mistaken for a photo of an actual item for sale. Subject: A set of three physical adventure paperback novels, standing together at a three-quarter angle with one cover visible. Fictional mountain, forest and compass cover art with simple invented titles, no real authors or publishers. Noticeable gently worn paper corners and slightly aged page edges, not damaged. Clearly books, not digital screens.",
+      "source": "C:\\Users\\Amaal\\.codex\\generated_images\\01a16ea2-8aaf-7e91-9b4d-98de0f7a0d16\\exec-936e2b4f-f8b1-4d7e-8f9c-5047324e58be.png",
+      "file": "adventure-novel-set.png"
+    },
+    {
+      "id": 11,
+      "title": "Camping lantern",
+      "slug": "camping-lantern",
+      "old": "7b71ffb10aba4efda2408294ae0dd06a.jpg",
+      "subject": "One portable camping lantern with a sturdy carry handle, protective frame, translucent light chamber and softly glowing warm LED centre. Real metal and plastic materials, like-new condition, isolated on the studio surface. No camping scene or other gear.",
+      "prompt": "Use case: product-mockup. Asset type: product listing picture for Market Mirror, a fictional student demo marketplace. Create a photorealistic studio product photograph, not a drawing, cartoon, icon or collage. Neutral light studio background, soft daylight, realistic materials and natural contact shadow. Entire subject centred with generous margins for website thumbnail cropping, landscape 4:3 composition. No people, unrelated props, real brand logos, price or advertising text. Include a small readable unobtrusive label \"AI-generated demo\" near the lower edge so this cannot be mistaken for a photo of an actual item for sale. Subject: One portable camping lantern with a sturdy carry handle, protective frame, translucent light chamber and softly glowing warm LED centre. Real metal and plastic materials, like-new condition, isolated on the studio surface. No camping scene or other gear.",
+      "source": "C:\\Users\\Amaal\\.codex\\generated_images\\01a16ea2-8aaf-7e91-9b4d-98de0f7a0d16\\exec-e8ff14c9-4ee9-4e92-bfe4-0f40fae06c87.png",
+      "file": "camping-lantern.png"
+    },
+    {
+      "id": 12,
+      "title": "Craft supply box",
+      "slug": "craft-supply-box",
+      "old": "f988d526ba4340329e247cc667ad6c9e.jpg",
+      "subject": "One open organiser box filled with new craft supplies: coloured pencils, a few thread spools, safety scissors, small paper sheets and beads in separate compartments. Real textures, neatly arranged, all contained in one box, no brand names, no extra surrounding props.",
+      "prompt": "Use case: product-mockup. Asset type: product listing picture for Market Mirror, a fictional student demo marketplace. Create a photorealistic studio product photograph, not a drawing, cartoon, icon or collage. Neutral light studio background, soft daylight, realistic materials and natural contact shadow. Entire subject centred with generous margins for website thumbnail cropping, landscape 4:3 composition. No people, unrelated props, real brand logos, price or advertising text. Include a small readable unobtrusive label \"AI-generated demo\" near the lower edge so this cannot be mistaken for a photo of an actual item for sale. Subject: One open organiser box filled with new craft supplies: coloured pencils, a few thread spools, safety scissors, small paper sheets and beads in separate compartments. Real textures, neatly arranged, all contained in one box, no brand names, no extra surrounding props.",
+      "source": "C:\\Users\\Amaal\\.codex\\generated_images\\01a16ea2-8aaf-7e91-9b4d-98de0f7a0d16\\exec-cfe53b3b-7719-4c4e-aad9-dbd85479063c.png",
+      "file": "craft-supply-box.png"
+    }
+  ]
+}

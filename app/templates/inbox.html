@@ -1,0 +1,2 @@
+{% extends 'base.html' %}{% from 'macros.html' import pagination with context %}
+{% block content %}<h1>Your messages</h1><div class="panel">{% for conversation in items %}<p><a href="{{ url_for('engagement.thread', conversation_id=conversation.id) }}">{{ conversation.product.title }}</a> · {{ conversation.product.status|capitalize }}</p>{% else %}<p>No conversations yet. Find a product and contact its seller.</p>{% endfor %}</div>{{ pagination(page,pages) }}{% endblock %}

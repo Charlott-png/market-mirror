@@ -1,0 +1,36 @@
+{% extends 'base.html' %}{% from 'macros.html' import pagination, card with context %}
+{% block title %}{{ title }} | Market Mirror{% endblock %}
+{% block content %}
+<div class="catalogue-page">
+<div class="section-heading"><h1>{{ title }}</h1>{% if current_user.is_authenticated %}<a class="button" href="{{ url_for('market.create_listing') }}">Sell a product</a>{% endif %}</div>
+{% if seller %}<p class="preserve-lines">{{ seller.bio or 'This seller has not added a biography yet.' }}</p><p>Member since {{ seller.created_at.strftime('%B %Y') }}</p>{% endif %}
+{% if search %}
+{% if current_user.is_authenticated %}
+<section id="recently-viewed" class="recently-viewed-section" aria-labelledby="recently-viewed-heading">
+  <div class="section-heading"><h2 id="recently-viewed-heading">Recently Viewed</h2></div>
+  {% if recent_products %}<div class="product-grid">{% for product in recent_products %}{{ card(product) }}{% endfor %}</div>
+  {% else %}<p>Products you open will appear here.</p>{% endif %}
+</section>
+{% endif %}
+<form id="catalogue-search-form" class="filters panel" method="get" action="{{ url_for('market.browse') }}" data-live-search-url="{{ url_for('market.live_search') }}">
+<div><label for="q">Search</label><input id="q" name="q" maxlength="120" value="{{ request.args.get('q','') }}" placeholder="Find your next useful thing"></div>
+<div><label for="category">Category</label><select id="category" name="category"><option value="">All categories</option>{% for key,label in categories.items() %}<option value="{{ key }}" {% if request.args.get('category') == key %}selected{% endif %}>{{ label }}</option>{% endfor %}</select></div>
+<div><label for="condition">Condition</label><select id="condition" name="condition"><option value="">Any condition</option>{% for key,label in conditions.items() %}<option value="{{ key }}" {% if request.args.get('condition') == key %}selected{% endif %}>{{ label }}</option>{% endfor %}</select></div>
+<div><label for="min_price">Minimum USD</label><input id="min_price" name="min_price" inputmode="decimal" value="{{ request.args.get('min_price','') }}"></div>
+<div><label for="max_price">Maximum USD</label><input id="max_price" name="max_price" inputmode="decimal" value="{{ request.args.get('max_price','') }}"></div>
+<div><label for="sort">Sort</label><select id="sort" name="sort">{% for key,label in [('newest','Newest'),('price_asc','Lowest price'),('price_desc','Highest price')] %}<option value="{{ key }}" {% if request.args.get('sort','newest') == key %}selected{% endif %}>{{ label }}</option>{% endfor %}</select></div>
+<button type="submit">Find products</button><a href="{{ url_for('market.browse') }}">Clear filters</a>
+</form>
+<div id="live-search-feedback" class="live-search-feedback" role="status" aria-live="polite" aria-atomic="true"><span id="live-search-spinner" class="live-search-spinner" aria-hidden="true" hidden></span><span id="live-search-status"></span></div>
+<p id="product-result-count">{{ total }} product{{ '' if total == 1 else 's' }}</p>
+<section id="product-results" aria-busy="false">
+  <div id="product-grid" class="product-grid">{% include '_product_grid.html' %}</div>
+  <div id="product-pagination">{% include '_catalogue_pagination.html' %}</div>
+</section>
+{% else %}
+<p>{{ total }} product{{ '' if total == 1 else 's' }}</p>
+<div class="product-grid">{% include '_product_grid.html' %}</div>
+{{ pagination(page, pages) }}
+{% endif %}
+</div>
+{% endblock %}

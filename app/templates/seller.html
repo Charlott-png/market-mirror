@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% from 'macros.html' import card, pagination with context %}
+{% block title %}{{ seller.username }} · Seller profile | Market Mirror{% endblock %}
+{% block content %}
+<a href="{{ url_for('market.browse') }}">← Browse products</a>
+<header id="seller-profile-header" class="seller-profile panel">
+  <p class="eyebrow">Public seller profile</p>
+  <div class="seller-profile-heading">
+    <h1>{{ seller.username }}</h1>
+    {% if has_activity_badge %}
+    <span id="seller-activity-badge" class="seller-activity-badge" aria-describedby="seller-badge-explanation">Verified Seller</span>
+    {% endif %}
+  </div>
+  <p class="seller-joined">Joined <time datetime="{{ joined_iso }}">{{ joined_label }}</time></p>
+  <p id="seller-bio" class="preserve-lines">{{ seller.bio or 'This seller has not added a biography yet.' }}</p>
+  {% if has_activity_badge %}
+  <p id="seller-badge-explanation" class="seller-badge-explanation">Activity badge: this seller has at least 4 active listings. Identity has not been verified.</p>
+  {% endif %}
+</header>
+<section aria-labelledby="seller-listings-title">
+  <div class="section-heading">
+    <h2 id="seller-listings-title">Active listings</h2>
+    <p id="seller-active-count">{{ total }} active listing{{ '' if total == 1 else 's' }}</p>
+  </div>
+  <div class="product-grid">
+    {% for product in items %}
+      {{ card(product) }}
+    {% else %}
+      <p class="panel">This seller has no active listings right now.</p>
+    {% endfor %}
+  </div>
+  {{ pagination(page, pages) }}
+</section>
+{% endblock %}

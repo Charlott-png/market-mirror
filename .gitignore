@@ -1,0 +1,43 @@
+# Private Python environment
+.venv/
+.venv-clean/
+
+# Python-generated cache files
+__pycache__/
+*.py[cod]
+
+# Test and coverage caches
+.pytest_cache/
+.pytest-tmp/
+.coverage
+htmlcov/
+
+# Local configuration and secrets
+.env
+.env.*
+!.env.example
+
+# Future local database and uploads
+instance/
+
+# Editor and operating-system clutter
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Local presentation tooling and generated preview/build files
+node_modules/
+.codex-build/
+.codex-output/
+.chrome-preview*/
+.edge-preview*/
+
+# Local database copies, credentials and private key files
+*.db
+*.sqlite
+*.sqlite3
+*.pem
+*.key
+*.pfx
+*.p12

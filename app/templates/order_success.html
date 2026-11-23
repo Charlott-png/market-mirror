@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block title %}Purchase complete | Market Mirror{% endblock %}
+{% block content %}
+<section class="order-receipt panel" aria-labelledby="order-success-title">
+  <p class="eyebrow">Order #{{ order.id }}</p>
+  <h1 id="order-success-title">Thank you for your purchase</h1>
+  <p class="intro">Your Market Mirror order has been recorded and the purchased listings are now marked Sold.</p>
+  <p><strong>Completed:</strong> <time datetime="{{ order.created_at.isoformat() }}">{{ order.created_at.strftime('%Y-%m-%d %H:%M UTC') }}</time></p>
+
+  <h2>Purchased items</h2>
+  <ul class="order-item-list">
+    {% for item in order.items %}
+    <li class="order-item-row">
+      <span><strong>{{ item.product_title }}</strong><small>Seller: {{ item.seller_username }}</small></span>
+      <span class="price">${{ '%.2f'|format(item.unit_price) }} {{ item.currency }}</span>
+    </li>
+    {% endfor %}
+  </ul>
+  <div class="order-total">
+    <strong>Order total</strong>
+    <span class="price">${{ '%.2f'|format(order.total_amount) }} {{ order.currency }}</span>
+  </div>
+  <p class="notice"><strong>Class project:</strong> no real payment was collected and no delivery is promised.</p>
+  <p><a class="button" href="{{ url_for('market.browse') }}">Continue exploring</a></p>
+</section>
+{% endblock %}

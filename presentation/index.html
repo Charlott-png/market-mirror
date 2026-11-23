@@ -1,0 +1,1608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Market Mirror project pitch — an AI-powered luxury marketplace built by Amaal (AzureMonarch).">
+  <title>Market Mirror — Project Pitch</title>
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap");
+
+    :root {
+      color-scheme: dark;
+      --midnight: #0a1128;
+      --midnight-deep: #050813;
+      --surface: #111b37;
+      --surface-soft: rgba(19, 30, 59, 0.78);
+      --gold: #d4af37;
+      --gold-bright: #f1d77a;
+      --gold-dark: #9a7514;
+      --ivory: #f7f3e8;
+      --muted: #c9c1ae;
+      --line: rgba(212, 175, 55, 0.33);
+      --blue: #5ca6ff;
+      --success: #8ed9a5;
+      --danger: #ff9f9f;
+      --heading: "Playfair Display", Georgia, "Times New Roman", serif;
+      --body: "Montserrat", Arial, Helvetica, sans-serif;
+      --shadow: 0 1.4rem 4rem rgba(0, 0, 0, 0.38);
+      --slide-pad: clamp(2.2rem, 5vw, 5.6rem);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      width: 100%;
+      min-width: 320px;
+      height: 100%;
+      margin: 0;
+      overflow: hidden;
+    }
+
+    body {
+      background: var(--midnight-deep);
+      color: var(--ivory);
+      font-family: var(--body);
+      line-height: 1.55;
+    }
+
+    button,
+    a {
+      font: inherit;
+    }
+
+    button {
+      min-width: 2.75rem;
+      min-height: 2.75rem;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(10, 17, 40, 0.82);
+      color: var(--ivory);
+      cursor: pointer;
+      transition: border-color 160ms ease, background 160ms ease, color 160ms ease, transform 160ms ease;
+    }
+
+    button:hover {
+      border-color: var(--gold);
+      background: rgba(212, 175, 55, 0.13);
+      color: var(--gold-bright);
+    }
+
+    button:active {
+      transform: translateY(1px);
+    }
+
+    button:focus-visible,
+    a:focus-visible,
+    [tabindex]:focus-visible {
+      outline: 3px solid var(--gold-bright);
+      outline-offset: 3px;
+    }
+
+    button:disabled {
+      cursor: not-allowed;
+      opacity: 0.35;
+    }
+
+    .presentation {
+      position: relative;
+      width: 100%;
+      height: 100dvh;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 12% 12%, rgba(212, 175, 55, 0.11), transparent 29rem),
+        radial-gradient(circle at 92% 85%, rgba(92, 166, 255, 0.09), transparent 35rem),
+        linear-gradient(145deg, var(--midnight) 0%, var(--midnight-deep) 100%);
+    }
+
+    .presentation::before,
+    .presentation::after {
+      position: fixed;
+      z-index: 0;
+      width: 21rem;
+      height: 21rem;
+      border: 1px solid rgba(212, 175, 55, 0.08);
+      border-radius: 50%;
+      content: "";
+      pointer-events: none;
+    }
+
+    .presentation::before {
+      top: -12rem;
+      right: -7rem;
+      box-shadow: 0 0 0 3rem rgba(212, 175, 55, 0.025), 0 0 0 7rem rgba(212, 175, 55, 0.015);
+    }
+
+    .presentation::after {
+      bottom: -15rem;
+      left: -8rem;
+      box-shadow: 0 0 0 4rem rgba(92, 166, 255, 0.018), 0 0 0 8rem rgba(212, 175, 55, 0.012);
+    }
+
+    .progress-track {
+      position: fixed;
+      top: 0;
+      right: 0;
+      left: 0;
+      z-index: 30;
+      height: 4px;
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    .progress-bar {
+      width: 12.5%;
+      height: 100%;
+      background: linear-gradient(90deg, var(--gold-dark), var(--gold-bright));
+      box-shadow: 0 0 1rem rgba(212, 175, 55, 0.55);
+      transition: width 260ms ease;
+    }
+
+    .deck-header {
+      position: fixed;
+      top: 1.25rem;
+      right: clamp(1.25rem, 3vw, 3rem);
+      left: clamp(1.25rem, 3vw, 3rem);
+      z-index: 20;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      pointer-events: none;
+    }
+
+    .mini-brand,
+    .timing-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      color: var(--muted);
+      font-size: clamp(0.68rem, 1vw, 0.82rem);
+      font-weight: 700;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+    }
+
+    .mini-brand::before {
+      width: 1.8rem;
+      height: 1px;
+      background: var(--gold);
+      content: "";
+    }
+
+    .timing-chip {
+      padding: 0.45rem 0.7rem;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(5, 8, 19, 0.48);
+      color: var(--gold-bright);
+    }
+
+    .slides {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      height: 100%;
+    }
+
+    .slide {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      min-width: 0;
+      min-height: 0;
+      padding: clamp(5rem, 8vh, 7.2rem) var(--slide-pad) clamp(5.6rem, 9vh, 7.4rem);
+      overflow: auto;
+      align-content: center;
+      opacity: 0;
+      transform: translateX(2rem) scale(0.99);
+      visibility: hidden;
+      transition: opacity 260ms ease, transform 260ms ease, visibility 260ms;
+    }
+
+    .slide.is-active {
+      opacity: 1;
+      transform: translateX(0) scale(1);
+      visibility: visible;
+    }
+
+    .slide-inner {
+      width: min(100%, 82rem);
+      margin-inline: auto;
+    }
+
+    .slide-number {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      margin: 0 0 0.8rem;
+      color: var(--gold-bright);
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    .slide-number::after {
+      width: 4rem;
+      height: 1px;
+      background: linear-gradient(90deg, var(--gold), transparent);
+      content: "";
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin-top: 0;
+    }
+
+    h1,
+    h2,
+    h3 {
+      font-family: var(--heading);
+      line-height: 1.07;
+    }
+
+    h1 {
+      max-width: 14ch;
+      margin-bottom: 1.1rem;
+      font-size: clamp(3rem, 7.4vw, 7.4rem);
+      letter-spacing: -0.04em;
+    }
+
+    h2 {
+      max-width: 20ch;
+      margin-bottom: 1rem;
+      font-size: clamp(2.25rem, 5vw, 5rem);
+      letter-spacing: -0.035em;
+    }
+
+    h3 {
+      margin-bottom: 0.55rem;
+      font-size: clamp(1.15rem, 2vw, 1.75rem);
+    }
+
+    .gold-text {
+      color: var(--gold-bright);
+    }
+
+    .lead {
+      max-width: 55rem;
+      margin-bottom: clamp(1.5rem, 3vw, 2.5rem);
+      color: var(--muted);
+      font-size: clamp(1rem, 1.7vw, 1.35rem);
+    }
+
+    .kicker {
+      margin-bottom: 0.75rem;
+      color: var(--gold);
+      font-size: 0.8rem;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .two-column {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: clamp(1.25rem, 3.4vw, 3.5rem);
+      align-items: stretch;
+    }
+
+    .two-column.wide-left {
+      grid-template-columns: minmax(0, 1.16fr) minmax(18rem, 0.84fr);
+    }
+
+    .glass-card {
+      position: relative;
+      min-width: 0;
+      padding: clamp(1.15rem, 2.6vw, 2.1rem);
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 1.15rem;
+      background: linear-gradient(145deg, rgba(20, 31, 61, 0.9), rgba(9, 15, 34, 0.84));
+      box-shadow: var(--shadow);
+    }
+
+    .glass-card::before {
+      position: absolute;
+      top: 0;
+      right: 20%;
+      left: 20%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold-bright), transparent);
+      content: "";
+      opacity: 0.75;
+    }
+
+    .hook-card {
+      display: grid;
+      min-height: 11rem;
+      align-content: center;
+      border-left: 3px solid var(--gold);
+    }
+
+    .hook-card strong {
+      display: block;
+      color: var(--gold-bright);
+      font-family: var(--heading);
+      font-size: clamp(1.35rem, 2.5vw, 2.25rem);
+      line-height: 1.25;
+    }
+
+    .agenda-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.75rem;
+      margin-top: 1.6rem;
+    }
+
+    .agenda-item {
+      padding: 0.8rem 1rem;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: clamp(0.78rem, 1.15vw, 0.95rem);
+    }
+
+    .agenda-item b {
+      display: block;
+      margin-bottom: 0.2rem;
+      color: var(--ivory);
+    }
+
+    .presenter-line {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.65rem 1.5rem;
+      align-items: center;
+      margin-top: 1.6rem;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .presenter-line strong {
+      color: var(--ivory);
+    }
+
+    .identity-mark {
+      display: inline-grid;
+      width: 2.5rem;
+      height: 2.5rem;
+      place-items: center;
+      border: 1px solid var(--gold);
+      border-radius: 50%;
+      color: var(--gold-bright);
+      font-family: var(--heading);
+      font-weight: 800;
+    }
+
+    .pain-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+
+    .pain-card {
+      min-height: 13rem;
+      padding: 1.35rem;
+      border: 1px solid rgba(255, 159, 159, 0.19);
+      border-radius: 1rem;
+      background: rgba(64, 24, 36, 0.22);
+    }
+
+    .pain-index,
+    .feature-icon {
+      display: inline-grid;
+      width: 2.65rem;
+      height: 2.65rem;
+      margin-bottom: 1rem;
+      place-items: center;
+      border: 1px solid currentColor;
+      border-radius: 0.75rem;
+      color: var(--danger);
+      font-weight: 800;
+    }
+
+    .pain-card p,
+    .feature-card p,
+    .metric-card p,
+    .roadmap-card p {
+      margin-bottom: 0;
+      color: var(--muted);
+      font-size: clamp(0.84rem, 1.15vw, 1rem);
+    }
+
+    .gap-statement {
+      display: flex;
+      margin-top: 1.25rem;
+      padding: 0.9rem 1.15rem;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      border-left: 3px solid var(--danger);
+      background: rgba(255, 159, 159, 0.06);
+      color: var(--muted);
+    }
+
+    .gap-statement strong {
+      color: var(--ivory);
+    }
+
+    .vision-panel {
+      display: grid;
+      min-height: 22rem;
+      padding: clamp(1.5rem, 3vw, 3rem);
+      align-content: center;
+      border: 1px solid var(--line);
+      border-radius: 1.4rem;
+      background:
+        linear-gradient(135deg, rgba(212, 175, 55, 0.09), transparent 42%),
+        var(--surface-soft);
+      box-shadow: var(--shadow);
+    }
+
+    .vision-stack {
+      display: grid;
+      gap: 0.8rem;
+    }
+
+    .vision-pillar {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 0.9rem;
+      padding: 1rem;
+      align-items: center;
+      border: 1px solid rgba(212, 175, 55, 0.2);
+      border-radius: 0.9rem;
+      background: rgba(5, 8, 19, 0.42);
+    }
+
+    .vision-pillar span:first-child {
+      display: grid;
+      width: 2.4rem;
+      height: 2.4rem;
+      place-items: center;
+      border-radius: 50%;
+      background: var(--gold);
+      color: var(--midnight);
+      font-weight: 800;
+    }
+
+    .vision-pillar strong {
+      display: block;
+      margin-bottom: 0.15rem;
+    }
+
+    .vision-pillar small {
+      color: var(--muted);
+    }
+
+    .architecture-grid {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr auto 1fr;
+      gap: 0.65rem;
+      align-items: stretch;
+      margin-top: 1.5rem;
+    }
+
+    .architecture-node {
+      display: grid;
+      min-height: 10.5rem;
+      padding: 1.2rem;
+      align-content: center;
+      border: 1px solid var(--line);
+      border-radius: 1rem;
+      background: rgba(17, 27, 55, 0.76);
+      text-align: center;
+    }
+
+    .architecture-node .node-label {
+      margin-bottom: 0.45rem;
+      color: var(--gold-bright);
+      font-size: 0.7rem;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .architecture-node strong {
+      font-family: var(--heading);
+      font-size: clamp(1.2rem, 2vw, 1.7rem);
+    }
+
+    .architecture-node small {
+      margin-top: 0.4rem;
+      color: var(--muted);
+    }
+
+    .architecture-arrow {
+      display: grid;
+      place-items: center;
+      color: var(--gold);
+      font-size: 1.6rem;
+    }
+
+    .integration-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+      margin-top: 0.85rem;
+    }
+
+    .integration-card {
+      display: flex;
+      padding: 0.8rem 1rem;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.7rem;
+      border: 1px solid rgba(92, 166, 255, 0.22);
+      border-radius: 0.8rem;
+      background: rgba(92, 166, 255, 0.06);
+    }
+
+    .integration-card span {
+      color: var(--blue);
+      font-size: 0.75rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .tech-strip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.55rem;
+      margin-top: 1rem;
+    }
+
+    .tech-badge {
+      padding: 0.38rem 0.7rem;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: var(--muted);
+      font-size: 0.75rem;
+      font-weight: 700;
+    }
+
+    .demo-flow {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 0.7rem;
+      margin-top: 1.5rem;
+    }
+
+    .demo-step {
+      position: relative;
+      min-height: 12.5rem;
+      padding: 1rem;
+      border: 1px solid var(--line);
+      border-radius: 1rem;
+      background: linear-gradient(160deg, rgba(20, 31, 61, 0.92), rgba(7, 11, 27, 0.78));
+    }
+
+    .demo-step:not(:last-child)::after {
+      position: absolute;
+      top: 50%;
+      right: -0.72rem;
+      z-index: 2;
+      color: var(--gold);
+      content: "›";
+      font-size: 1.6rem;
+      transform: translateY(-50%);
+    }
+
+    .demo-step .feature-icon {
+      color: var(--gold-bright);
+    }
+
+    .demo-step h3 {
+      font-size: clamp(1rem, 1.5vw, 1.3rem);
+    }
+
+    .demo-step p {
+      margin-bottom: 0;
+      color: var(--muted);
+      font-size: clamp(0.73rem, 0.95vw, 0.88rem);
+    }
+
+    .demo-note {
+      margin-top: 1rem;
+      color: var(--muted);
+      font-size: 0.86rem;
+      text-align: center;
+    }
+
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      margin-top: 1.4rem;
+    }
+
+    .metric-card {
+      min-height: 12rem;
+      padding: 1.3rem;
+      border: 1px solid var(--line);
+      border-radius: 1rem;
+      background: rgba(17, 27, 55, 0.74);
+    }
+
+    .metric-value {
+      display: block;
+      margin-bottom: 0.45rem;
+      color: var(--gold-bright);
+      font-family: var(--heading);
+      font-size: clamp(2.5rem, 5vw, 4.6rem);
+      font-weight: 700;
+      line-height: 1;
+    }
+
+    .metric-label {
+      display: block;
+      margin-bottom: 0.6rem;
+      color: var(--ivory);
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.11em;
+      text-transform: uppercase;
+    }
+
+    .validation-band {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 1rem;
+      margin-top: 1rem;
+      padding: 0.85rem 1rem;
+      align-items: center;
+      border: 1px solid rgba(142, 217, 165, 0.25);
+      border-radius: 0.8rem;
+      background: rgba(142, 217, 165, 0.07);
+      color: var(--muted);
+    }
+
+    .validation-band strong {
+      color: var(--success);
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .impact-list {
+      display: grid;
+      gap: 0.8rem;
+    }
+
+    .impact-item {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 0.9rem;
+      padding: 0.95rem 1rem;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .impact-item:last-child {
+      border-bottom: 0;
+    }
+
+    .impact-check {
+      color: var(--gold-bright);
+      font-size: 1.15rem;
+    }
+
+    .impact-item strong {
+      display: block;
+      margin-bottom: 0.15rem;
+    }
+
+    .impact-item small {
+      color: var(--muted);
+    }
+
+    .roadmap {
+      display: grid;
+      gap: 0.8rem;
+    }
+
+    .roadmap-card {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: 0.9rem;
+      padding: 1rem;
+      align-items: center;
+      border: 1px solid var(--line);
+      border-radius: 0.9rem;
+      background: rgba(17, 27, 55, 0.68);
+    }
+
+    .roadmap-index {
+      display: grid;
+      width: 2.5rem;
+      height: 2.5rem;
+      place-items: center;
+      border-radius: 50%;
+      background: var(--gold);
+      color: var(--midnight);
+      font-weight: 800;
+    }
+
+    .roadmap-card .status {
+      color: var(--gold-bright);
+      font-size: 0.68rem;
+      font-weight: 800;
+      letter-spacing: 0.11em;
+      text-transform: uppercase;
+    }
+
+    .closing-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.25fr) minmax(18rem, 0.75fr);
+      gap: clamp(1.5rem, 4vw, 4rem);
+      align-items: center;
+    }
+
+    .takeaway-list {
+      display: grid;
+      gap: 0.75rem;
+      margin-top: 1.4rem;
+    }
+
+    .takeaway {
+      display: flex;
+      gap: 0.75rem;
+      align-items: center;
+      color: var(--muted);
+    }
+
+    .takeaway::before {
+      width: 0.55rem;
+      height: 0.55rem;
+      flex: 0 0 auto;
+      border-radius: 50%;
+      background: var(--gold);
+      box-shadow: 0 0 0 0.3rem rgba(212, 175, 55, 0.12);
+      content: "";
+    }
+
+    .qa-card {
+      display: grid;
+      min-height: 22rem;
+      place-items: center;
+      border: 1px solid var(--line);
+      border-radius: 1.4rem;
+      background:
+        radial-gradient(circle at center, rgba(212, 175, 55, 0.13), transparent 55%),
+        rgba(17, 27, 55, 0.65);
+      box-shadow: var(--shadow);
+      text-align: center;
+    }
+
+    .qa-mark {
+      color: var(--gold-bright);
+      font-family: var(--heading);
+      font-size: clamp(5rem, 12vw, 10rem);
+      line-height: 0.9;
+    }
+
+    .contact-line {
+      margin-top: 1.4rem;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .contact-line strong {
+      color: var(--gold-bright);
+    }
+
+    .speaker-notes {
+      position: fixed;
+      right: clamp(1rem, 3vw, 3rem);
+      bottom: 5.4rem;
+      left: clamp(1rem, 3vw, 3rem);
+      z-index: 50;
+      max-width: 68rem;
+      max-height: 42vh;
+      margin-inline: auto;
+      padding: 1rem 1.2rem;
+      overflow: auto;
+      border: 1px solid var(--gold);
+      border-radius: 1rem;
+      background: rgba(5, 8, 19, 0.97);
+      box-shadow: 0 1.5rem 5rem rgba(0, 0, 0, 0.7);
+    }
+
+    .speaker-notes[hidden] {
+      display: none;
+    }
+
+    .notes-heading {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .notes-heading strong {
+      color: var(--gold-bright);
+      font-family: var(--heading);
+      font-size: 1.1rem;
+    }
+
+    .speaker-notes ul {
+      display: grid;
+      gap: 0.35rem;
+      margin: 0;
+      padding-left: 1.2rem;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .deck-controls {
+      position: fixed;
+      right: 1rem;
+      bottom: 1rem;
+      left: 1rem;
+      z-index: 40;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap: 1rem;
+      align-items: center;
+      pointer-events: none;
+    }
+
+    .control-group,
+    .slide-status {
+      pointer-events: auto;
+    }
+
+    .control-group {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .control-group:last-child {
+      justify-content: flex-end;
+    }
+
+    .control-button {
+      display: inline-flex;
+      padding: 0.55rem 0.85rem;
+      align-items: center;
+      justify-content: center;
+      gap: 0.45rem;
+      white-space: nowrap;
+    }
+
+    .control-button span:last-child {
+      font-size: 0.75rem;
+      font-weight: 700;
+    }
+
+    .control-button[aria-pressed="true"] {
+      border-color: var(--gold);
+      background: var(--gold);
+      color: var(--midnight);
+    }
+
+    .slide-status {
+      min-width: 8.5rem;
+      padding: 0.6rem 1rem;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(5, 8, 19, 0.84);
+      color: var(--muted);
+      font-size: 0.76rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-align: center;
+    }
+
+    .slide-status strong {
+      color: var(--gold-bright);
+    }
+
+    .keyboard-help {
+      position: fixed;
+      right: 1rem;
+      bottom: 5.2rem;
+      z-index: 45;
+      width: min(22rem, calc(100vw - 2rem));
+      padding: 1rem;
+      border: 1px solid var(--line);
+      border-radius: 0.9rem;
+      background: rgba(5, 8, 19, 0.97);
+      box-shadow: var(--shadow);
+    }
+
+    .keyboard-help[hidden] {
+      display: none;
+    }
+
+    .keyboard-help h2 {
+      margin-bottom: 0.7rem;
+      font-family: var(--body);
+      font-size: 1rem;
+      letter-spacing: 0;
+    }
+
+    .shortcut-grid {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 0.45rem 0.8rem;
+      color: var(--muted);
+      font-size: 0.82rem;
+    }
+
+    kbd {
+      min-width: 2rem;
+      padding: 0.15rem 0.4rem;
+      border: 1px solid var(--line);
+      border-bottom-width: 2px;
+      border-radius: 0.35rem;
+      background: var(--surface);
+      color: var(--gold-bright);
+      font-family: var(--body);
+      font-size: 0.75rem;
+      text-align: center;
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    @media (max-width: 900px) {
+      html,
+      body {
+        overflow: auto;
+      }
+
+      .presentation {
+        min-height: 100dvh;
+      }
+
+      .slide {
+        align-content: start;
+      }
+
+      .two-column,
+      .two-column.wide-left,
+      .closing-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .pain-grid,
+      .metrics-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .architecture-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .architecture-arrow {
+        transform: rotate(90deg);
+      }
+
+      .demo-flow {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .demo-step:not(:last-child)::after {
+        display: none;
+      }
+
+      .qa-card {
+        min-height: 12rem;
+      }
+    }
+
+    @media (max-width: 620px) {
+      :root {
+        --slide-pad: 1.15rem;
+      }
+
+      .deck-header {
+        top: 0.8rem;
+      }
+
+      .mini-brand {
+        max-width: 10rem;
+      }
+
+      .timing-chip {
+        padding: 0.35rem 0.55rem;
+      }
+
+      .slide {
+        padding-top: 4.4rem;
+        padding-bottom: 7.2rem;
+      }
+
+      h1 {
+        font-size: clamp(2.65rem, 14vw, 4rem);
+      }
+
+      h2 {
+        font-size: clamp(2rem, 10vw, 3.1rem);
+      }
+
+      .agenda-row,
+      .pain-grid,
+      .metrics-grid,
+      .integration-row,
+      .demo-flow {
+        grid-template-columns: 1fr;
+      }
+
+      .pain-card,
+      .metric-card,
+      .demo-step {
+        min-height: 0;
+      }
+
+      .architecture-node {
+        min-height: 8rem;
+      }
+
+      .roadmap-card {
+        grid-template-columns: auto 1fr;
+      }
+
+      .roadmap-card .status {
+        grid-column: 2;
+      }
+
+      .deck-controls {
+        grid-template-columns: auto 1fr auto;
+        gap: 0.4rem;
+      }
+
+      .control-button {
+        padding-inline: 0.65rem;
+      }
+
+      .control-button span:last-child,
+      #help-button,
+      #fullscreen-button span:last-child {
+        display: none;
+      }
+
+      .slide-status {
+        min-width: 0;
+        padding-inline: 0.5rem;
+      }
+
+      .speaker-notes {
+        bottom: 4.8rem;
+        max-height: 52vh;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+
+    @media print {
+      html,
+      body {
+        height: auto;
+        overflow: visible;
+        background: #fff;
+        color: #111;
+      }
+
+      .presentation {
+        height: auto;
+        background: #fff;
+      }
+
+      .progress-track,
+      .deck-header,
+      .deck-controls,
+      .speaker-notes,
+      .keyboard-help {
+        display: none !important;
+      }
+
+      .slides {
+        height: auto;
+      }
+
+      .slide {
+        position: relative;
+        display: grid !important;
+        min-height: 7.5in;
+        padding: 0.55in;
+        break-after: page;
+        overflow: visible;
+        color: #111;
+        opacity: 1 !important;
+        transform: none !important;
+        visibility: visible !important;
+      }
+
+      .glass-card,
+      .pain-card,
+      .vision-panel,
+      .architecture-node,
+      .demo-step,
+      .metric-card,
+      .roadmap-card,
+      .qa-card {
+        border: 1px solid #777;
+        background: #fff;
+        box-shadow: none;
+      }
+
+      h1,
+      h2,
+      h3,
+      .gold-text,
+      .metric-value {
+        color: #111;
+      }
+
+      .lead,
+      .pain-card p,
+      .feature-card p,
+      .metric-card p,
+      .roadmap-card p,
+      .demo-step p,
+      .impact-item small {
+        color: #333;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="presentation" aria-label="Market Mirror project pitch presentation">
+    <div class="progress-track" aria-hidden="true"><div id="progress-bar" class="progress-bar"></div></div>
+
+    <header class="deck-header" aria-hidden="true">
+      <span class="mini-brand">Market Mirror</span>
+      <span id="timing-chip" class="timing-chip">1:00</span>
+    </header>
+
+    <div id="slides" class="slides">
+      <section class="slide is-active" id="slide-1" role="group" aria-roledescription="slide" aria-label="Slide 1 of 8: Title and hook" tabindex="-1">
+        <div class="slide-inner">
+          <p class="slide-number">01 · Title &amp; Hook</p>
+          <div class="two-column wide-left">
+            <div>
+              <p class="kicker">AI-powered luxury marketplace</p>
+              <h1>Market <span class="gold-text">Mirror</span></h1>
+              <p class="lead">A trusted, intelligent marketplace experience that turns a product photo into a polished listing—and a search into a conversation.</p>
+              <div class="presenter-line">
+                <span class="identity-mark" aria-hidden="true">AM</span>
+                <span><strong>Amaal (AzureMonarch)</strong><br>Full-Stack Developer &amp; Student</span>
+                <span>Academic Committee · 10-minute pitch</span>
+              </div>
+            </div>
+            <div class="glass-card hook-card">
+              <p class="kicker">The value proposition</p>
+              <strong>List faster. Discover smarter. Trade with confidence.</strong>
+              <div class="agenda-row" aria-label="Presentation agenda">
+                <div class="agenda-item"><b>Why</b>The market gap</div>
+                <div class="agenda-item"><b>How</b>Product + architecture</div>
+                <div class="agenda-item"><b>Proof</b>Features + validation</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <aside class="speaker-notes" hidden aria-label="Speaker notes for slide 1">
+          <div class="notes-heading"><strong>Speaker Notes</strong><span>Estimated time: 1:00</span></div>
+          <ul>
+            <li>0:00–0:15 — Introduce yourself: “I’m Amaal, also known as AzureMonarch, and I built Market Mirror as a full-stack AI programming project.”</li>
+            <li>0:15–0:35 — Deliver the hook: a marketplace where one product photo can become a ready-to-review listing and shoppers can ask for recommendations conversationally.</li>
+            <li>0:35–0:50 — State the objective: demonstrate a complete, secure, tested application built from scratch across a 16-week learning journey.</li>
+            <li>0:50–1:00 — Preview the story: problem, solution, architecture, live features, proof, and next steps.</li>
+          </ul>
+        </aside>
+      </section>
+
+      <section class="slide" id="slide-2" role="group" aria-roledescription="slide" aria-label="Slide 2 of 8: The problem space" tabindex="-1">
+        <div class="slide-inner">
+          <p class="slide-number">02 · The Problem Space</p>
+          <h2>Local marketplaces create <span class="gold-text">friction before trust.</span></h2>
+          <p class="lead">Students want a simple way to reuse valuable items—but today’s experience is fragmented, manual, and difficult to evaluate.</p>
+          <div class="pain-grid">
+            <article class="pain-card">
+              <span class="pain-index">01</span>
+              <h3>Outdated experience</h3>
+              <p>Cluttered layouts and weak mobile support make browsing feel slow and unreliable.</p>
+            </article>
+            <article class="pain-card">
+              <span class="pain-index">02</span>
+              <h3>Listing effort</h3>
+              <p>Sellers must invent titles, categories, and prices without guidance or consistent structure.</p>
+            </article>
+            <article class="pain-card">
+              <span class="pain-index">03</span>
+              <h3>Low confidence</h3>
+              <p>Limited seller context, weak discovery, and disconnected messaging reduce trust.</p>
+            </article>
+          </div>
+          <div class="gap-statement">
+            <span><strong>The gap:</strong> local simplicity is useful, but it should not mean a second-class digital experience.</span>
+            <span class="gold-text">Opportunity → intelligent + trustworthy</span>
+          </div>
+        </div>
+        <aside class="speaker-notes" hidden aria-label="Speaker notes for slide 2">
+          <div class="notes-heading"><strong>Speaker Notes</strong><span>Estimated time: 1:00</span></div>
+          <ul>
+            <li>0:00–0:15 — Frame the user: students often have useful products to sell and limited time to prepare listings.</li>
+            <li>0:15–0:35 — Explain the three pain points: dated interfaces, manual listing work, and low buyer confidence.</li>
+            <li>0:35–0:50 — Connect the problems: poor presentation makes products harder to discover, while weak context makes sellers harder to trust.</li>
+            <li>0:50–1:00 — Transition: “The opportunity was not just to rebuild a marketplace, but to make every step feel guided and credible.”</li>
+          </ul>
+        </aside>
+      </section>
+
+      <section class="slide" id="slide-3" role="group" aria-roledescription="slide" aria-label="Slide 3 of 8: Solution and vision" tabindex="-1">
+        <div class="slide-inner">
+          <p class="slide-number">03 · Solution &amp; Vision</p>
+          <div class="two-column wide-left">
+            <div class="vision-panel">
+              <p class="kicker">One coherent experience</p>
+              <h2>Commerce, confidence, and AI—<span class="gold-text">in one workflow.</span></h2>
+              <p class="lead">Market Mirror is a responsive Flask marketplace with a premium Midnight &amp; Gold identity and AI assistance that remains optional, explainable, and user-controlled.</p>
+            </div>
+            <div class="vision-stack">
+              <div class="vision-pillar"><span>1</span><span><strong>Elegant by default</strong><small>Mobile-first discovery with a luxury visual system.</small></span></div>
+              <div class="vision-pillar"><span>2</span><span><strong>Guided, not automated</strong><small>AI suggests; the user reviews and decides.</small></span></div>
+              <div class="vision-pillar"><span>3</span><span><strong>Complete transaction path</strong><small>Account → listing → conversation → cart → order.</small></span></div>
+              <div class="vision-pillar"><span>4</span><span><strong>Trust through engineering</strong><small>Security boundaries, validation, and test-first delivery.</small></span></div>
+            </div>
+          </div>
+        </div>
+        <aside class="speaker-notes" hidden aria-label="Speaker notes for slide 3">
+          <div class="notes-heading"><strong>Speaker Notes</strong><span>Estimated time: 1:00</span></div>
+          <ul>
+            <li>0:00–0:15 — Define Market Mirror in one sentence: a modern student marketplace that supports the entire buyer and seller journey.</li>
+            <li>0:15–0:30 — Highlight the Midnight &amp; Gold interface: it gives ordinary second-hand products a premium, consistent presentation.</li>
+            <li>0:30–0:45 — Explain the AI philosophy: suggestions are optional, disclosed, and always reviewed by the seller or shopper.</li>
+            <li>0:45–1:00 — Emphasize completeness: this is not a visual prototype; accounts, listings, messages, checkout, orders, and AI all work together.</li>
+          </ul>
+        </aside>
+      </section>
+
+      <section class="slide" id="slide-4" role="group" aria-roledescription="slide" aria-label="Slide 4 of 8: Architecture and technical approach" tabindex="-1">
+        <div class="slide-inner">
+          <p class="slide-number">04 · Architecture &amp; Technical Approach</p>
+          <h2>A layered system with <span class="gold-text">clear responsibilities.</span></h2>
+          <p class="lead">The architecture separates presentation, business rules, data, and AI services so each part can be tested and explained independently.</p>
+          <div class="architecture-grid" aria-label="Application architecture flow">
+            <div class="architecture-node"><span class="node-label">Experience</span><strong>HTML · CSS · JavaScript</strong><small>Responsive pages, AJAX search, galleries, chat UI</small></div>
+            <div class="architecture-arrow" aria-hidden="true">→</div>
+            <div class="architecture-node"><span class="node-label">Application</span><strong>Python · Flask</strong><small>Routes, forms, permissions, checkout transactions</small></div>
+            <div class="architecture-arrow" aria-hidden="true">→</div>
+            <div class="architecture-node"><span class="node-label">Data</span><strong>SQLAlchemy · SQLite</strong><small>Users, products, messages, carts, orders, history</small></div>
+          </div>
+          <div class="integration-row">
+            <div class="integration-card"><strong>Google Gemini API</strong><span>Vision + assistant</span></div>
+            <div class="integration-card"><strong>Security layer</strong><span>CSRF + auth + validation</span></div>
+          </div>
+          <div class="tech-strip" aria-label="Technology stack">
+            <span class="tech-badge">Flask</span><span class="tech-badge">Jinja</span><span class="tech-badge">SQLAlchemy</span><span class="tech-badge">Flask-Login</span><span class="tech-badge">Flask-WTF</span><span class="tech-badge">Pillow</span><span class="tech-badge">pytest</span><span class="tech-badge">Gemini</span>
+          </div>
+        </div>
+        <aside class="speaker-notes" hidden aria-label="Speaker notes for slide 4">
+          <div class="notes-heading"><strong>Speaker Notes</strong><span>Estimated time: 1:30</span></div>
+          <ul>
+            <li>0:00–0:20 — Start at the browser layer: server-rendered HTML, one shared design system, and focused JavaScript enhancements such as AJAX search and chat polling.</li>
+            <li>0:20–0:45 — Explain Flask’s role: routes receive requests, forms validate input, permissions decide access, and service functions execute business rules.</li>
+            <li>0:45–1:05 — Explain the data layer: SQLAlchemy models relationships among users, listings, messages, carts, orders, images, and viewing history; SQLite supports the local class version.</li>
+            <li>1:05–1:20 — Explain Gemini integration: images and bounded product facts are sent only when the relevant optional AI feature is enabled.</li>
+            <li>1:20–1:30 — Close on separation of concerns: this structure made test-first development and future PostgreSQL deployment possible.</li>
+          </ul>
+        </aside>
+      </section>
+
+      <section class="slide" id="slide-5" role="group" aria-roledescription="slide" aria-label="Slide 5 of 8: Key features and demo walkthrough" tabindex="-1">
+        <div class="slide-inner">
+          <p class="slide-number">05 · Key Features &amp; Demo Walkthrough</p>
+          <h2>One journey. <span class="gold-text">Five standout moments.</span></h2>
+          <p class="lead">The strongest demo follows one product from seller upload to buyer purchase.</p>
+          <div class="demo-flow">
+            <article class="demo-step"><span class="feature-icon">01</span><h3>Upload</h3><p>Drag and drop up to five product images with immediate previews.</p></article>
+            <article class="demo-step"><span class="feature-icon">AI</span><h3>Vision</h3><p>Gemini reads the cover image and suggests a title and category.</p></article>
+            <article class="demo-step"><span class="feature-icon">03</span><h3>Discover</h3><p>AJAX search, filters, related products, and recently viewed history.</p></article>
+            <article class="demo-step"><span class="feature-icon">04</span><h3>Connect</h3><p>Modern buyer–seller chat plus a conversational AI Shop Assistant.</p></article>
+            <article class="demo-step"><span class="feature-icon">✓</span><h3>Checkout</h3><p>Create an order, mark listings sold, clear the cart, and show a receipt.</p></article>
+          </div>
+          <p class="demo-note">Suggested live demo: photo → AI suggestion → search → message → cart → order confirmation</p>
+        </div>
+        <aside class="speaker-notes" hidden aria-label="Speaker notes for slide 5">
+          <div class="notes-heading"><strong>Speaker Notes</strong><span>Estimated time: 1:30</span></div>
+          <ul>
+            <li>0:00–0:15 — Set up the demo story: “I will follow a camera from seller upload to completed buyer order.”</li>
+            <li>0:15–0:35 — Show upload and AI Vision: multiple previews appear before save; Gemini proposes title/category, but the seller reviews them.</li>
+            <li>0:35–0:55 — Show discovery: the Explore grid updates while typing, then product detail offers a gallery, seller profile, and same-category alternatives.</li>
+            <li>0:55–1:15 — Show communication: buyer–seller bubbles refresh automatically; the Shop Assistant can answer “Find me a cheap camera” using active catalogue facts.</li>
+            <li>1:15–1:30 — Show transaction completion: Checkout creates an order atomically, marks each purchased listing Sold, empties the cart, and displays a receipt.</li>
+          </ul>
+        </aside>
+      </section>
+
+      <section class="slide" id="slide-6" role="group" aria-roledescription="slide" aria-label="Slide 6 of 8: Milestones and key metrics" tabindex="-1">
+        <div class="slide-inner">
+          <p class="slide-number">06 · Milestones &amp; Key Metrics</p>
+          <h2>Built to work—and <span class="gold-text">proven to keep working.</span></h2>
+          <div class="metrics-grid">
+            <article class="metric-card"><span class="metric-value">603</span><span class="metric-label">Tests passing</span><p>Complete project suite across marketplace, security, AI, media, and orders.</p></article>
+            <article class="metric-card"><span class="metric-value">16+</span><span class="metric-label">Major features</span><p>From authentication and listings to live chat, AI, and checkout.</p></article>
+            <article class="metric-card"><span class="metric-value">3</span><span class="metric-label">AI experiences</span><p>Vision suggestions, product intelligence, and conversational discovery.</p></article>
+            <article class="metric-card"><span class="metric-value">320</span><span class="metric-label">Pixel validation</span><p>Responsive mobile layout verified without horizontal overflow.</p></article>
+          </div>
+          <div class="validation-band"><strong>Validation result</strong><span>Focused tests → related regressions → complete suite → live browser verification with zero JavaScript console errors.</span></div>
+        </div>
+        <aside class="speaker-notes" hidden aria-label="Speaker notes for slide 6">
+          <div class="notes-heading"><strong>Speaker Notes</strong><span>Estimated time: 1:30</span></div>
+          <ul>
+            <li>0:00–0:20 — Lead with the strongest result: 603 automated tests passed in the final complete run.</li>
+            <li>0:20–0:45 — Explain test breadth: authentication, permissions, CSRF, search, images, messages, carts, checkout, AI boundaries, migrations, and regression behavior.</li>
+            <li>0:45–1:00 — Explain feature scope: more than 16 major capabilities were integrated instead of demonstrated as isolated prototypes.</li>
+            <li>1:00–1:15 — Explain responsive evidence: the luxury theme was checked in the real browser at desktop and 320 pixels with no horizontal overflow.</li>
+            <li>1:15–1:30 — Highlight the engineering process: each major feature followed specification, planning, tests, implementation, and verification.</li>
+          </ul>
+        </aside>
+      </section>
+
+      <section class="slide" id="slide-7" role="group" aria-roledescription="slide" aria-label="Slide 7 of 8: Impact and next steps" tabindex="-1">
+        <div class="slide-inner">
+          <p class="slide-number">07 · Impact, ROI &amp; Next Steps</p>
+          <div class="two-column">
+            <div class="glass-card">
+              <p class="kicker">Value delivered</p>
+              <h2>More than a marketplace—<span class="gold-text">a reusable product foundation.</span></h2>
+              <div class="impact-list">
+                <div class="impact-item"><span class="impact-check">◆</span><span><strong>Lower listing effort</strong><small>Image previews and AI suggestions reduce manual decisions.</small></span></div>
+                <div class="impact-item"><span class="impact-check">◆</span><span><strong>Higher buyer confidence</strong><small>Seller context, modern messaging, clear status, and consistent presentation.</small></span></div>
+                <div class="impact-item"><span class="impact-check">◆</span><span><strong>Academic ROI</strong><small>One project demonstrates frontend, backend, data, AI, security, testing, and deployment readiness.</small></span></div>
+              </div>
+            </div>
+            <div>
+              <p class="kicker">Roadmap</p>
+              <div class="roadmap">
+                <article class="roadmap-card"><span class="roadmap-index">1</span><span><strong>Render deployment</strong><p>Move application data from local SQLite to managed PostgreSQL.</p></span><span class="status">Next</span></article>
+                <article class="roadmap-card"><span class="roadmap-index">2</span><span><strong>Durable media</strong><p>Add cloud object storage for persistent uploaded product photos.</p></span><span class="status">Cloud-ready</span></article>
+                <article class="roadmap-card"><span class="roadmap-index">3</span><span><strong>Arabic localization</strong><p>Add RTL layouts and bilingual interface content.</p></span><span class="status">Expansion</span></article>
+              </div>
+            </div>
+          </div>
+        </div>
+        <aside class="speaker-notes" hidden aria-label="Speaker notes for slide 7">
+          <div class="notes-heading"><strong>Speaker Notes</strong><span>Estimated time: 1:30</span></div>
+          <ul>
+            <li>0:00–0:25 — Describe user value: faster listing creation, clearer discovery, stronger seller context, and one complete purchasing path.</li>
+            <li>0:25–0:50 — Describe academic ROI: the same system demonstrates UI design, Flask architecture, relational data, security, AI integration, testing, and operations.</li>
+            <li>0:50–1:10 — Present deployment as the immediate next milestone: Render web service plus PostgreSQL, environment secrets, migrations, and health checks.</li>
+            <li>1:10–1:20 — Mention durable media as the production requirement for uploaded photos.</li>
+            <li>1:20–1:30 — Close the roadmap with Arabic localization, including right-to-left layout support for a broader audience.</li>
+          </ul>
+        </aside>
+      </section>
+
+      <section class="slide" id="slide-8" role="group" aria-roledescription="slide" aria-label="Slide 8 of 8: Conclusion and questions" tabindex="-1">
+        <div class="slide-inner">
+          <p class="slide-number">08 · Conclusion &amp; Q&amp;A</p>
+          <div class="closing-grid">
+            <div>
+              <p class="kicker">The takeaway</p>
+              <h2>Market Mirror turns a class idea into a <span class="gold-text">complete, intelligent product.</span></h2>
+              <p class="lead">A premium marketplace experience, grounded in secure full-stack engineering and validated by more than 600 automated tests.</p>
+              <div class="takeaway-list">
+                <div class="takeaway">Functional from account creation to completed order</div>
+                <div class="takeaway">AI that assists without removing user control</div>
+                <div class="takeaway">Architecture ready for PostgreSQL, cloud hosting, and localization</div>
+              </div>
+              <p class="contact-line"><strong>Amaal · AzureMonarch</strong> · Full-Stack Developer &amp; Student<br>Project repository and live demonstration available on request.</p>
+            </div>
+            <div class="qa-card" aria-label="Questions and answers">
+              <div><div class="qa-mark">?</div><h3>Questions &amp; Discussion</h3><p class="gold-text">Thank you.</p></div>
+            </div>
+          </div>
+        </div>
+        <aside class="speaker-notes" hidden aria-label="Speaker notes for slide 8">
+          <div class="notes-heading"><strong>Speaker Notes</strong><span>Estimated time: 1:00</span></div>
+          <ul>
+            <li>0:00–0:15 — Restate the achievement: a complete marketplace, not a disconnected collection of experiments.</li>
+            <li>0:15–0:30 — Repeat the three proof points: working transaction journey, optional Gemini AI, and 603 passing tests.</li>
+            <li>0:30–0:45 — Give the call to action: invite the committee to review the live workflow, source architecture, and test evidence.</li>
+            <li>0:45–1:00 — Thank the audience, pause, and open the floor for questions.</li>
+          </ul>
+        </aside>
+      </section>
+    </div>
+
+    <div class="deck-controls" aria-label="Presentation controls">
+      <div class="control-group">
+        <button id="previous-button" class="control-button" type="button" aria-label="Previous slide" title="Previous slide (Left Arrow)"><span aria-hidden="true">←</span><span>Previous</span></button>
+        <button id="next-button" class="control-button" type="button" aria-label="Next slide" title="Next slide (Right Arrow or Space)"><span>Next</span><span aria-hidden="true">→</span></button>
+      </div>
+      <div id="slide-status" class="slide-status" aria-live="polite"><strong>Slide 1</strong> of 8</div>
+      <div class="control-group">
+        <button id="notes-button" class="control-button" type="button" aria-label="Show speaker notes" aria-pressed="false" title="Toggle speaker notes (S)"><span aria-hidden="true">▤</span><span>Notes</span></button>
+        <button id="fullscreen-button" class="control-button" type="button" aria-label="Enter fullscreen" title="Toggle fullscreen (F)"><span aria-hidden="true">⛶</span><span>Fullscreen</span></button>
+        <button id="help-button" class="control-button" type="button" aria-label="Show keyboard shortcuts" aria-expanded="false" aria-controls="keyboard-help" title="Keyboard shortcuts"><span aria-hidden="true">?</span></button>
+      </div>
+    </div>
+
+    <aside id="keyboard-help" class="keyboard-help" hidden aria-label="Keyboard shortcuts">
+      <h2>Keyboard shortcuts</h2>
+      <div class="shortcut-grid"><kbd>→</kbd><span>Next slide</span><kbd>Space</kbd><span>Next slide</span><kbd>←</kbd><span>Previous slide</span><kbd>S</kbd><span>Speaker notes</span><kbd>F</kbd><span>Fullscreen</span><kbd>Home</kbd><span>First slide</span><kbd>End</kbd><span>Last slide</span></div>
+    </aside>
+
+    <p id="live-announcer" class="sr-only" aria-live="polite"></p>
+  </main>
+
+  <script>
+    (() => {
+      "use strict";
+
+      const slides = Array.from(document.querySelectorAll(".slide"));
+      const totalSlides = slides.length;
+      const previousButton = document.querySelector("#previous-button");
+      const nextButton = document.querySelector("#next-button");
+      const notesButton = document.querySelector("#notes-button");
+      const fullscreenButton = document.querySelector("#fullscreen-button");
+      const helpButton = document.querySelector("#help-button");
+      const keyboardHelp = document.querySelector("#keyboard-help");
+      const slideStatus = document.querySelector("#slide-status");
+      const progressBar = document.querySelector("#progress-bar");
+      const timingChip = document.querySelector("#timing-chip");
+      const liveAnnouncer = document.querySelector("#live-announcer");
+      const slideTimes = ["1:00", "1:00", "1:00", "1:30", "1:30", "1:30", "1:30", "1:00"];
+      let currentIndex = 0;
+      let notesVisible = false;
+      let touchStartX = null;
+
+      const indexFromHash = () => {
+        const match = window.location.hash.match(/^#slide-(\d+)$/);
+        if (!match) return 0;
+        const requested = Number(match[1]) - 1;
+        return Number.isInteger(requested) && requested >= 0 && requested < totalSlides ? requested : 0;
+      };
+
+      const updateNotes = () => {
+        slides.forEach((slide, index) => {
+          const notes = slide.querySelector(".speaker-notes");
+          if (notes) notes.hidden = !(notesVisible && index === currentIndex);
+        });
+        notesButton.setAttribute("aria-pressed", String(notesVisible));
+        notesButton.setAttribute("aria-label", notesVisible ? "Hide speaker notes" : "Show speaker notes");
+      };
+
+      const showSlide = (index, options = {}) => {
+        const boundedIndex = Math.max(0, Math.min(index, totalSlides - 1));
+        currentIndex = boundedIndex;
+
+        slides.forEach((slide, slideIndex) => {
+          const active = slideIndex === currentIndex;
+          slide.classList.toggle("is-active", active);
+          slide.setAttribute("aria-hidden", String(!active));
+          if ("inert" in slide) slide.inert = !active;
+        });
+
+        previousButton.disabled = currentIndex === 0;
+        nextButton.disabled = currentIndex === totalSlides - 1;
+        slideStatus.innerHTML = `<strong>Slide ${currentIndex + 1}</strong> of ${totalSlides}`;
+        progressBar.style.width = `${((currentIndex + 1) / totalSlides) * 100}%`;
+        timingChip.textContent = slideTimes[currentIndex];
+        updateNotes();
+
+        const newHash = `#slide-${currentIndex + 1}`;
+        if (window.location.hash !== newHash) history.replaceState(null, "", newHash);
+
+        const heading = slides[currentIndex].querySelector("h1, h2");
+        liveAnnouncer.textContent = `Slide ${currentIndex + 1} of ${totalSlides}: ${heading ? heading.textContent.trim() : ""}`;
+        if (options.focus) slides[currentIndex].focus({ preventScroll: true });
+      };
+
+      const nextSlide = () => showSlide(currentIndex + 1, { focus: true });
+      const previousSlide = () => showSlide(currentIndex - 1, { focus: true });
+
+      const toggleNotes = () => {
+        notesVisible = !notesVisible;
+        updateNotes();
+      };
+
+      const toggleFullscreen = async () => {
+        try {
+          if (!document.fullscreenElement) {
+            await document.documentElement.requestFullscreen();
+          } else {
+            await document.exitFullscreen();
+          }
+        } catch (error) {
+          liveAnnouncer.textContent = "Fullscreen is unavailable in this browser.";
+        }
+      };
+
+      const updateFullscreenLabel = () => {
+        const isFullscreen = Boolean(document.fullscreenElement);
+        fullscreenButton.setAttribute("aria-label", isFullscreen ? "Exit fullscreen" : "Enter fullscreen");
+        fullscreenButton.title = isFullscreen ? "Exit fullscreen (F)" : "Toggle fullscreen (F)";
+      };
+
+      const toggleHelp = () => {
+        const willOpen = keyboardHelp.hidden;
+        keyboardHelp.hidden = !willOpen;
+        helpButton.setAttribute("aria-expanded", String(willOpen));
+      };
+
+      previousButton.addEventListener("click", previousSlide);
+      nextButton.addEventListener("click", nextSlide);
+      notesButton.addEventListener("click", toggleNotes);
+      fullscreenButton.addEventListener("click", toggleFullscreen);
+      helpButton.addEventListener("click", toggleHelp);
+      document.addEventListener("fullscreenchange", updateFullscreenLabel);
+
+      document.addEventListener("keydown", (event) => {
+        if (event.altKey || event.ctrlKey || event.metaKey) return;
+        const key = event.key.toLowerCase();
+        const interactive = event.target.closest("button, a, input, textarea, select");
+
+        if ((event.key === "ArrowRight" || event.key === "PageDown" || (event.key === " " && !interactive)) && currentIndex < totalSlides - 1) {
+          event.preventDefault();
+          nextSlide();
+        } else if ((event.key === "ArrowLeft" || event.key === "PageUp") && currentIndex > 0) {
+          event.preventDefault();
+          previousSlide();
+        } else if (key === "s" && !interactive) {
+          event.preventDefault();
+          toggleNotes();
+        } else if (key === "f" && !interactive) {
+          event.preventDefault();
+          toggleFullscreen();
+        } else if (event.key === "Home" && !interactive) {
+          event.preventDefault();
+          showSlide(0, { focus: true });
+        } else if (event.key === "End" && !interactive) {
+          event.preventDefault();
+          showSlide(totalSlides - 1, { focus: true });
+        } else if (event.key === "Escape" && !keyboardHelp.hidden) {
+          keyboardHelp.hidden = true;
+          helpButton.setAttribute("aria-expanded", "false");
+          helpButton.focus();
+        }
+      });
+
+      document.addEventListener("touchstart", (event) => {
+        touchStartX = event.changedTouches[0].clientX;
+      }, { passive: true });
+
+      document.addEventListener("touchend", (event) => {
+        if (touchStartX === null) return;
+        const distance = event.changedTouches[0].clientX - touchStartX;
+        touchStartX = null;
+        if (Math.abs(distance) < 60) return;
+        if (distance < 0 && currentIndex < totalSlides - 1) nextSlide();
+        if (distance > 0 && currentIndex > 0) previousSlide();
+      }, { passive: true });
+
+      window.addEventListener("hashchange", () => showSlide(indexFromHash()));
+      showSlide(indexFromHash());
+    })();
+  </script>
+</body>
+</html>

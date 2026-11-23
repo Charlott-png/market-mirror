@@ -1,0 +1,46 @@
+<section class="shop-assistant" aria-label="AI shopping help">
+  <button id="shop-assistant-launcher" class="shop-assistant-launcher" type="button"
+          aria-label="Open AI Shop Assistant" aria-controls="shop-assistant-panel"
+          aria-expanded="false">
+    <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path fill="currentColor" d="M4 4h16v12H9l-5 4V4Zm4 5h8v2H8V9Z"/></svg>
+    <span>AI Shop Assistant</span>
+  </button>
+
+  <aside id="shop-assistant-panel" class="shop-assistant-panel"
+         aria-labelledby="shop-assistant-title" hidden>
+    <header class="shop-assistant-header">
+      <h2 id="shop-assistant-title">AI Shop Assistant</h2>
+      <button id="shop-assistant-close" class="shop-assistant-close" type="button"
+              aria-label="Close AI Shop Assistant">Close <span aria-hidden="true">×</span></button>
+    </header>
+    <ol id="shop-assistant-transcript" class="shop-assistant-transcript" aria-label="Assistant conversation">
+      <li class="shop-assistant-message shop-assistant-message-assistant">
+        Tell me what kind of product, budget or condition you want. I can suggest active Market Mirror listings.
+      </li>
+    </ol>
+
+    {% if not current_user.is_authenticated %}
+      <p>Sign in before asking the assistant so Market Mirror can protect the shared API allowance.</p>
+      <a class="button" href="{{ url_for('auth.login', next=request.path) }}">Sign in to ask</a>
+    {% elif not shop_assistant_available %}
+      <p id="shop-assistant-unavailable">The AI Shop Assistant is unavailable. You can still search every active listing manually.</p>
+      <a id="shop-assistant-explore" class="button" href="{{ url_for('market.browse') }}">Explore products</a>
+    {% else %}
+      <form id="shop-assistant-form" class="shop-assistant-form">
+        <input id="shop-assistant-csrf" type="hidden" value="{{ csrf_token() }}">
+        <label for="shop-assistant-query">What are you looking for?</label>
+        <textarea id="shop-assistant-query" name="query" maxlength="300" rows="3"
+                  aria-describedby="shop-assistant-help shop-assistant-status" required></textarea>
+        <p id="shop-assistant-help" class="shop-assistant-help">Include the product type, maximum budget or preferred condition.</p>
+        <div class="shop-assistant-actions">
+          <button id="shop-assistant-send" type="submit">Send</button>
+          <button id="shop-assistant-clear" class="secondary" type="button">Clear chat</button>
+        </div>
+      </form>
+      <a id="shop-assistant-explore" class="shop-assistant-explore" href="{{ url_for('market.browse') }}">Explore products manually</a>
+    {% endif %}
+
+    <p id="shop-assistant-status" class="shop-assistant-status" aria-live="polite"></p>
+    <p id="shop-assistant-disclosure" class="shop-assistant-disclosure">Your question and a limited list of active products are sent to Google Gemini. Do not include personal information. AI suggestions may be wrong; check the product page before acting.</p>
+  </aside>
+</section>

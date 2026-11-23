@@ -1,0 +1,126 @@
+{
+  "batch_id": "extra-demo-2026-10-26",
+  "method": "Built-in image_gen, one product per generation",
+  "items": [
+    {
+      "title": "Silver laptop",
+      "slug": "silver-laptop",
+      "owner": 0,
+      "category": "electronics",
+      "condition": "good",
+      "price": "450.00",
+      "description": "A silver laptop with a keyboard, trackpad and an open screen, suitable for a classroom marketplace example.",
+      "subject": "One silver laptop computer open at approximately 110 degrees, three-quarter view showing the keyboard, trackpad, thin screen and metal body. Screen shows a simple abstract blue gradient without logos or readable interface text. Subtle gentle-use wear. No accessories.",
+      "file": "silver-laptop.png",
+      "prompt": "Use case: product-mockup. Asset type: product listing picture for Market Mirror, a fictional student demo marketplace. Create one photorealistic studio product photograph, not a drawing or icon. Neutral light studio background, soft daylight, realistic material textures and a natural contact shadow. Entire subject centred with generous margins for website thumbnail cropping, landscape 4:3 composition. No people, unrelated props, real brand logos, advertising claims or price. Include a small readable unobtrusive label \"AI-generated demo\" near the lower edge. Subject: One silver laptop computer open at approximately 110 degrees, three-quarter view showing the keyboard, trackpad, thin screen and metal body. Screen shows a simple abstract blue gradient without logos or readable interface text. Subtle gentle-use wear. No accessories."
+    },
+    {
+      "title": "Unlocked smartphone",
+      "slug": "unlocked-smartphone",
+      "owner": 1,
+      "category": "electronics",
+      "condition": "good",
+      "price": "180.00",
+      "description": "A modern touchscreen smartphone shown as a fictional unlocked handset. No real device or technical specification is promised.",
+      "subject": "One modern unbranded smartphone, resting at a slight angle with its front display visible. Dark rounded frame, glossy glass, simple abstract pastel wallpaper without interface text, natural reflections and subtle gentle-use wear. Only one phone, no extra back view or accessories.",
+      "file": "unlocked-smartphone.png",
+      "prompt": "Use case: product-mockup. Asset type: product listing picture for Market Mirror, a fictional student demo marketplace. Create one photorealistic studio product photograph, not a drawing or icon. Neutral light studio background, soft daylight, realistic material textures and a natural contact shadow. Entire subject centred with generous margins for website thumbnail cropping, landscape 4:3 composition. No people, unrelated props, real brand logos, advertising claims or price. Include a small readable unobtrusive label \"AI-generated demo\" near the lower edge. Subject: One modern unbranded smartphone, resting at a slight angle with its front display visible. Dark rounded frame, glossy glass, simple abstract pastel wallpaper without interface text, natural reflections and subtle gentle-use wear. Only one phone, no extra back view or accessories."
+    },
+    {
+      "title": "Wireless over-ear headphones",
+      "slug": "wireless-headphones",
+      "owner": 2,
+      "category": "electronics",
+      "condition": "like_new",
+      "price": "55.00",
+      "description": "Wireless-style over-ear headphones with cushioned ear cups and an adjustable headband.",
+      "subject": "One pair of charcoal wireless over-ear headphones with cushioned ear cups and an adjustable padded headband. Neatly arranged upright at a three-quarter angle, realistic fabric and matte plastic, like-new condition, no cable, branding or accessories.",
+      "file": "wireless-headphones.png",
+      "prompt": "Use case: product-mockup. Asset type: product listing picture for Market Mirror, a fictional student demo marketplace. Create one photorealistic studio product photograph, not a drawing or icon. Neutral light studio background, soft daylight, realistic material textures and a natural contact shadow. Entire subject centred with generous margins for website thumbnail cropping, landscape 4:3 composition. No people, unrelated props, real brand logos, advertising claims or price. Include a small readable unobtrusive label \"AI-generated demo\" near the lower edge. Subject: One pair of charcoal wireless over-ear headphones with cushioned ear cups and an adjustable padded headband. Neatly arranged upright at a three-quarter angle, realistic fabric and matte plastic, like-new condition, no cable, branding or accessories."
+    },
+    {
+      "title": "24-inch monitor",
+      "slug": "desktop-monitor",
+      "owner": 0,
+      "category": "electronics",
+      "condition": "good",
+      "price": "110.00",
+      "description": "A fictional 24-inch desktop monitor with a slim frame and a tabletop stand.",
+      "subject": "One unbranded desktop computer monitor with proportions typical of a 24-inch widescreen display, thin black bezel and a simple sturdy tabletop stand. Screen displays an abstract blue-green gradient, no text or interface. Full monitor and base visible, slight three-quarter angle, gently used.",
+      "file": "desktop-monitor.png",
+      "prompt": "Use case: product-mockup. Asset type: product listing picture for Market Mirror, a fictional student demo marketplace. Create one photorealistic studio product photograph, not a drawing or icon. Neutral light studio background, soft daylight, realistic material textures and a natural contact shadow. Entire subject centred with generous margins for website thumbnail cropping, landscape 4:3 composition. No people, unrelated props, real brand logos, advertising claims or price. Include a small readable unobtrusive label \"AI-generated demo\" near the lower edge. Subject: One unbranded desktop computer monitor with proportions typical of a 24-inch widescreen display, thin black bezel and a simple sturdy tabletop stand. Screen displays an abstract blue-green gradient, no text or interface. Full monitor and base visible, slight three-quarter angle, gently used."
+    },
+    {
+      "title": "Digital camera",
+      "slug": "digital-camera",
+      "owner": 1,
+      "category": "electronics",
+      "condition": "good",
+      "price": "220.00",
+      "description": "A compact digital camera with an attached lens, textured hand grip and camera controls.",
+      "subject": "One compact unbranded black digital mirrorless-style camera with an attached short lens, textured grip, realistic control dials and lens glass reflections. Slight three-quarter front view, gently used condition. No strap, tripod or extra lenses; no readable brand names.",
+      "file": "digital-camera.png",
+      "prompt": "Use case: product-mockup. Asset type: product listing picture for Market Mirror, a fictional student demo marketplace. Create one photorealistic studio product photograph, not a drawing or icon. Neutral light studio background, soft daylight, realistic material textures and a natural contact shadow. Entire subject centred with generous margins for website thumbnail cropping, landscape 4:3 composition. No people, unrelated props, real brand logos, advertising claims or price. Include a small readable unobtrusive label \"AI-generated demo\" near the lower edge. Subject: One compact unbranded black digital mirrorless-style camera with an attached short lens, textured grip, realistic control dials and lens glass reflections. Slight three-quarter front view, gently used condition. No strap, tripod or extra lenses; no readable brand names."
+    },
+    {
+      "title": "City bicycle",
+      "slug": "city-bicycle",
+      "owner": 2,
+      "category": "sports_outdoors",
+      "condition": "good",
+      "price": "140.00",
+      "description": "A fictional city bicycle with an upright handlebar, saddle and two full-size wheels.",
+      "subject": "One complete adult city bicycle seen from the side with both wheels fully visible, a simple muted-colour frame, upright handlebars, saddle, chain, pedals and kickstand. Mechanically plausible frame and spokes. Subtle signs of gentle use, studio product photo without rider or accessories.",
+      "file": "city-bicycle.png",
+      "prompt": "Use case: product-mockup. Asset type: product listing picture for Market Mirror, a fictional student demo marketplace. Create one photorealistic studio product photograph, not a drawing or icon. Neutral light studio background, soft daylight, realistic material textures and a natural contact shadow. Entire subject centred with generous margins for website thumbnail cropping, landscape 4:3 composition. No people, unrelated props, real brand logos, advertising claims or price. Include a small readable unobtrusive label \"AI-generated demo\" near the lower edge. Subject: One complete adult city bicycle seen from the side with both wheels fully visible, a simple muted-colour frame, upright handlebars, saddle, chain, pedals and kickstand. Mechanically plausible frame and spokes. Subtle signs of gentle use, studio product photo without rider or accessories."
+    },
+    {
+      "title": "Everyday backpack",
+      "slug": "everyday-backpack",
+      "owner": 0,
+      "category": "clothing",
+      "condition": "like_new",
+      "price": "25.00",
+      "description": "An everyday backpack with zipped compartments, a carry handle and padded shoulder straps.",
+      "subject": "One everyday fabric backpack, dark olive or navy, with a front zipped pocket, main zip compartment, top carry handle and padded shoulder straps slightly visible behind it. Upright three-quarter view, real woven fabric and stitching, like-new condition, no logos or objects inside.",
+      "file": "everyday-backpack.png",
+      "prompt": "Use case: product-mockup. Asset type: product listing picture for Market Mirror, a fictional student demo marketplace. Create one photorealistic studio product photograph, not a drawing or icon. Neutral light studio background, soft daylight, realistic material textures and a natural contact shadow. Entire subject centred with generous margins for website thumbnail cropping, landscape 4:3 composition. No people, unrelated props, real brand logos, advertising claims or price. Include a small readable unobtrusive label \"AI-generated demo\" near the lower edge. Subject: One everyday fabric backpack, dark olive or navy, with a front zipped pocket, main zip compartment, top carry handle and padded shoulder straps slightly visible behind it. Upright three-quarter view, real woven fabric and stitching, like-new condition, no logos or objects inside."
+    },
+    {
+      "title": "Drip coffee maker",
+      "slug": "drip-coffee-maker",
+      "owner": 1,
+      "category": "home_garden",
+      "condition": "good",
+      "price": "45.00",
+      "description": "A drip-style coffee maker with a glass carafe and a simple control panel.",
+      "subject": "One unbranded household drip coffee maker with a glass carafe seated on its base, filter housing above and a simple control panel. Real black plastic, glass and brushed metal textures, gently used and clean. No cups, coffee beans, packaging or unrelated props.",
+      "file": "drip-coffee-maker.png",
+      "prompt": "Use case: product-mockup. Asset type: product listing picture for Market Mirror, a fictional student demo marketplace. Create one photorealistic studio product photograph, not a drawing or icon. Neutral light studio background, soft daylight, realistic material textures and a natural contact shadow. Entire subject centred with generous margins for website thumbnail cropping, landscape 4:3 composition. No people, unrelated props, real brand logos, advertising claims or price. Include a small readable unobtrusive label \"AI-generated demo\" near the lower edge. Subject: One unbranded household drip coffee maker with a glass carafe seated on its base, filter housing above and a simple control panel. Real black plastic, glass and brushed metal textures, gently used and clean. No cups, coffee beans, packaging or unrelated props."
+    },
+    {
+      "title": "Ergonomic office chair",
+      "slug": "office-chair",
+      "owner": 2,
+      "category": "home_garden",
+      "condition": "good",
+      "price": "75.00",
+      "description": "An office chair with a mesh-style back, padded seat, armrests and a wheeled base.",
+      "subject": "One unbranded ergonomic office chair with a black breathable mesh back, padded seat, two armrests, central gas-lift column and five-star wheeled base. Entire chair visible from a three-quarter angle, realistic mesh and plastic, gentle-use condition. No desk, person or surrounding furniture.",
+      "file": "office-chair.png",
+      "prompt": "Use case: product-mockup. Asset type: product listing picture for Market Mirror, a fictional student demo marketplace. Create one photorealistic studio product photograph, not a drawing or icon. Neutral light studio background, soft daylight, realistic material textures and a natural contact shadow. Entire subject centred with generous margins for website thumbnail cropping, landscape 4:3 composition. No people, unrelated props, real brand logos, advertising claims or price. Include a small readable unobtrusive label \"AI-generated demo\" near the lower edge. Subject: One unbranded ergonomic office chair with a black breathable mesh back, padded seat, two armrests, central gas-lift column and five-star wheeled base. Entire chair visible from a three-quarter angle, realistic mesh and plastic, gentle-use condition. No desk, person or surrounding furniture."
+    },
+    {
+      "title": "Acoustic guitar",
+      "slug": "acoustic-guitar",
+      "owner": 0,
+      "category": "other",
+      "condition": "good",
+      "price": "85.00",
+      "description": "A wooden acoustic guitar with six strings, a sound hole and a full-length neck.",
+      "subject": "One unbranded six-string acoustic guitar with a natural warm wooden body, round sound hole, realistic strings, fretboard and six tuning pegs. Full instrument visible, leaning slightly in a simple studio product composition with no stand in view. Subtle wear, no case, person or other instruments.",
+      "file": "acoustic-guitar.png",
+      "prompt": "Use case: product-mockup. Asset type: product listing picture for Market Mirror, a fictional student demo marketplace. Create one photorealistic studio product photograph, not a drawing or icon. Neutral light studio background, soft daylight, realistic material textures and a natural contact shadow. Entire subject centred with generous margins for website thumbnail cropping, landscape 4:3 composition. No people, unrelated props, real brand logos, advertising claims or price. Include a small readable unobtrusive label \"AI-generated demo\" near the lower edge. Subject: One unbranded six-string acoustic guitar with a natural warm wooden body, round sound hole, realistic strings, fretboard and six tuning pegs. Full instrument visible, leaning slightly in a simple studio product composition with no stand in view. Subtle wear, no case, person or other instruments."
+    }
+  ]
+}

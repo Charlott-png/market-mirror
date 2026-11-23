@@ -1,0 +1,47 @@
+{% extends 'base.html' %}{% from 'macros.html' import csrf_field, card with context %}
+{% block title %}{{ product.title }} | Market Mirror{% endblock %}
+{% block content %}
+<a href="{{ url_for('market.browse') }}">← Browse products</a>
+<article class="product-detail panel">
+<div>
+{% set product_gallery = gallery|default([]) %}
+{% if product_gallery %}
+  {% set photo_url = url_for('market.media', filename=product_gallery[0]) %}
+  {# A real link remains useful even when JavaScript or dialog support is absent. #}
+  <a id="product-image-trigger" class="detail-image-link" href="{{ photo_url }}" aria-label="Enlarge image of {{ product.title }}{% if product_gallery|length > 1 %}, photo 1 of {{ product_gallery|length }}{% endif %}">
+    <img id="product-main-image" class="detail-image" src="{{ photo_url }}" alt="{{ product.title }}{% if product_gallery|length > 1 %}, photo 1 of {{ product_gallery|length }}{% endif %}">
+  </a>
+  {% if product_gallery|length > 1 %}
+  <nav id="product-gallery-thumbnails" class="product-gallery-thumbnails" aria-label="Choose a product photo">
+    {% for filename in product_gallery %}
+      {% set thumbnail_url = url_for('market.media', filename=filename) %}
+      <button type="button" class="product-gallery-thumbnail" data-gallery-index="{{ loop.index }}" data-gallery-url="{{ thumbnail_url }}" aria-label="Show photo {{ loop.index }} of {{ product_gallery|length }}" aria-current="{{ 'true' if loop.first else 'false' }}">
+        <img src="{{ thumbnail_url }}" alt="" loading="lazy">
+      </button>
+    {% endfor %}
+  </nav>
+  <p id="product-gallery-status" class="visually-hidden" aria-live="polite">Showing photo 1 of {{ product_gallery|length }}.</p>
+  {% endif %}
+  <p class="image-hint">Select the picture to view it larger.</p>
+  <dialog id="product-image-dialog" class="image-lightbox" aria-label="Image of {{ product.title }}">
+    <button id="product-image-close" class="image-lightbox-close" type="button" aria-label="Close image" autofocus>Close <span aria-hidden="true">×</span></button>
+    <img id="product-lightbox-image" class="image-lightbox-photo" data-src="{{ photo_url }}" alt="{{ product.title }}{% if product_gallery|length > 1 %}, photo 1 of {{ product_gallery|length }}{% endif %}" hidden>
+    <p id="product-image-error" class="image-lightbox-error" role="status" hidden>This picture is unavailable. Close this window and try reloading the product page.</p>
+  </dialog>
+{% else %}
+  <div class="photo-placeholder detail-image">No photo yet</div>
+{% endif %}
+</div>
+<div><p class="eyebrow">{{ categories[product.category] }}</p><h1>{{ product.title }}</h1><p class="price">${{ product.price }} USD</p><p>{{ conditions[product.condition] }} · <strong>{{ product.status|capitalize }}</strong></p><p class="preserve-lines">{{ product.description }}</p><p>Seller: <a href="{{ url_for('market.seller_profile', username=product.seller.username) }}">{{ product.seller.username }}</a></p>
+{% if current_user.is_authenticated and current_user.id == product.seller_id %}
+<a class="button" href="{{ url_for('market.edit_listing', product_id=product.id) }}">Edit listing</a>
+{% for status in transitions[product.status] | sort %}<form method="post" action="{{ url_for('market.change_status', product_id=product.id) }}" class="inline-form">{{ csrf_field() }}<input type="hidden" name="version" value="{{ product.version }}"><button name="status" value="{{ status }}">Mark {{ status }}</button></form>{% endfor %}
+{% elif product.status == 'active' %}
+{% if current_user.is_authenticated %}<form method="post" action="{{ url_for('engagement.save', product_id=product.id) }}">{{ csrf_field() }}<button class="secondary">Save product</button></form>
+<form method="post" action="{{ url_for('engagement.contact', product_id=product.id) }}">{{ message_form.hidden_tag() }}{{ message_form.body.label }}{{ message_form.body(maxlength=2000, rows=4) }}<button>Contact seller</button></form>
+{% else %}<a class="button" href="{{ url_for('auth.login', next=request.path) }}">Sign in to contact or save</a>{% endif %}
+{% else %}<p class="notice">This product is unavailable for new enquiries.</p>{% endif %}</div>
+</article>
+{% if current_user.is_authenticated and product.status == 'active' and not preview|default(false) %}<div data-view-url="{{ url_for('engagement.viewed', product_id=product.id) }}" data-csrf="{{ csrf_token() }}" hidden></div>{% endif %}
+{% if related_products|default([]) %}<section id="related-products" aria-labelledby="related-products-heading"><h2 id="related-products-heading">You might also like</h2><div class="product-grid">{% for related in related_products %}{{ card(related) }}{% endfor %}</div></section>{% endif %}
+{% endblock %}

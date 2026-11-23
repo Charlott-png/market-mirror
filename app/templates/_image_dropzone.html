@@ -1,0 +1,32 @@
+<div class="field image-upload-field">
+  {{ field.label }}
+  <div id="product-image-dropzone" class="image-dropzone" data-max-bytes="5242880" data-max-total-bytes="26214400" data-max-count="5">
+    <p id="product-image-drop-instruction" class="image-upload-instruction"><strong>Drag up to five product photos here</strong></p>
+    {% set image_describedby = 'product-image-drop-instruction product-image-help product-image-upload-status image-errors' %}
+    {% if show_vision_ai|default(false) and vision_ai_available %}{% set image_describedby = image_describedby ~ ' vision-ai-disclosure vision-ai-status' %}{% endif %}
+    {{ field(accept='image/jpeg,image/png', multiple=True, aria_describedby=image_describedby) }}
+    <p id="product-image-help" class="image-upload-help">Choose JPEG or PNG photos. Maximum 5 MiB each and 25 MiB total. <strong>Cover photo:</strong> the first selected image.</p>
+    <ul id="product-image-preview-list" class="image-upload-preview-list" aria-label="Selected photo previews" hidden></ul>
+    {% if replacing_gallery|default(false) %}<p class="image-upload-help">Leaving this empty keeps the current photos. Choosing new photos replaces the whole gallery.</p>{% endif %}
+    {% if current_gallery|default([]) %}<p class="image-upload-help">This listing currently has {{ current_gallery|length }} photo{% if current_gallery|length != 1 %}s{% endif %}.</p>{% endif %}
+  </div>
+  <p id="product-image-upload-status" class="image-upload-status" aria-live="polite"></p>
+  <div id="image-errors" role="alert">{% for error in field.errors %}<p class="error-text">{{ error }}</p>{% endfor %}</div>
+  {% if show_vision_ai|default(false) %}<div class="vision-ai-option">
+    <label for="vision-ai-enabled">
+      <input id="vision-ai-enabled" type="checkbox"{% if vision_ai_available %} checked{% else %} disabled{% endif %}>
+      Let AI suggest the title and category
+    </label>
+    {% if vision_ai_available %}
+      {% if vision_ai_provider_label == 'Google Gemini' %}
+        <p id="vision-ai-disclosure">After the preview appears, Market Mirror sends a resized, metadata-free copy to Google Gemini. Review every suggestion before saving. Google says free-tier submitted content may be used to improve its products.</p>
+      {% else %}
+        <p id="vision-ai-disclosure">After the preview appears, a resized, metadata-free copy is sent to {{ vision_ai_provider_label }}. Review every suggestion before saving.</p>
+      {% endif %}
+    {% else %}
+      <p id="vision-ai-disclosure">AI image suggestions are unavailable. You can still complete every field manually.</p>
+    {% endif %}
+    <span id="vision-ai-spinner" class="vision-ai-spinner" hidden aria-hidden="true"></span>
+    <p id="vision-ai-status" aria-live="polite"></p>
+  </div>{% endif %}
+</div>

@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block title %}{{ title }} | Market Mirror{% endblock %}
+{% block content %}
+<section class="panel form-panel">
+  <h1>{{ title }}</h1>
+  {% if mobile_account_shortcuts|default(false) %}
+    {% include '_mobile_account_shortcuts.html' %}
+  {% endif %}
+  <form method="post" enctype="multipart/form-data" {% if listing %}id="listing-form"{% endif %}>
+    {{ form.hidden_tag() }}
+    {% for field in form if field.type not in ['CSRFTokenField', 'HiddenField'] %}
+      {% if listing and image_dropzone|default(false) and field.name == 'image' %}
+        {% include '_image_dropzone.html' %}
+      {% else %}
+      <div class="field">
+        {{ field.label }}
+        {{ field(aria_describedby=field.id ~ '-errors') }}
+        <div id="{{ field.id }}-errors" role="alert">{% for error in field.errors %}<p class="error-text">{{ error }}</p>{% endfor %}</div>
+        {% if image_dropzone|default(false) and field.name in ['title', 'category'] %}
+          <span id="{{ field.name }}-ai-marker" class="ai-field-marker" hidden>AI suggestion — please review</span>
+        {% endif %}
+      </div>
+      {% endif %}
+    {% endfor %}
+    {% if listing %}<div id="ai-assist" class="panel"><p>Suggestions are optional. Your choices are final.</p><button type="button" data-suggest="category">Suggest category</button> <button type="button" data-suggest="price">Suggest price</button><p id="ai-result" aria-live="polite"></p><button type="button" id="apply-suggestion" hidden>Apply suggestion</button></div>{% endif %}
+    <button type="submit">{{ submit }}</button>
+  </form>
+</section>
+{% endblock %}

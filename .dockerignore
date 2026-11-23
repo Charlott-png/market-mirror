@@ -1,0 +1,8 @@
+.venv*
+.git
+.env*
+instance
+.pytest*
+__pycache__
+*.pyc
+docs/evidence/*.png

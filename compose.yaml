@@ -1,0 +1,34 @@
+# Future operator rehearsal only. Not executed on this machine (Docker absent).
+services:
+  db:
+    image: postgres:17
+    environment:
+      POSTGRES_DB: marketmirror
+      POSTGRES_USER: marketmirror
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Set a unique database password}
+    volumes:
+      - database:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U marketmirror -d marketmirror"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+  web:
+    build: .
+    ports:
+      - "127.0.0.1:8080:8080"
+    environment:
+      APP_ENV: production
+      DATABASE_URL: ${DATABASE_URL:?Set a postgresql+psycopg URL for the db service}
+      SECRET_KEY: ${SECRET_KEY:?Set a unique session secret}
+      TRUSTED_HOSTS: ${TRUSTED_HOSTS:?Set your HTTPS host}
+      UPLOAD_FOLDER: /data/uploads
+      AI_FOLDER: /data/ai
+    volumes:
+      - media:/data
+    depends_on:
+      db:
+        condition: service_healthy
+volumes:
+  database:
+  media:

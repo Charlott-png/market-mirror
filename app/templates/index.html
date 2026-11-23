@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %}Home | Market Mirror{% endblock %}
+
+{% block content %}
+  <section class="hero" aria-labelledby="welcome-heading">
+    <p class="eyebrow">Good finds. New beginnings.</p>
+    <h1 id="welcome-heading">Welcome to Market Mirror</h1>
+    <p class="intro">
+      Market Mirror is an online marketplace for finding useful things,
+      giving your belongings a new home, and connecting with sellers.
+    </p>
+    <p class="progress-note">
+      New marketplace features will be added gradually so that every part can
+      be understood, tested, and explained.
+    </p>
+    <div class="actions"><a class="button" href="{{ url_for('market.browse') }}">Explore products</a><a class="button secondary" href="{{ url_for('market.create_listing') }}">List something for sale</a></div>
+  </section>
+{% endblock %}

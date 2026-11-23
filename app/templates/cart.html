@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% from 'macros.html' import csrf_field, pagination with context %}
+{% block title %}Your cart | Market Mirror{% endblock %}
+{% block content %}
+<div class="section-heading">
+  <h1 id="cart-title">Your cart</h1>
+  <a href="{{ url_for('market.browse') }}">← Browse products</a>
+</div>
+<p id="cart-item-count">{{ total }} item{{ '' if total == 1 else 's' }} in cart</p>
+{% if checkout_message %}<p id="cart-checkout-result" class="notice" role="status">{{ checkout_message }}</p>{% endif %}
+{% if error_message %}<p id="cart-error" class="error-text" role="alert">{{ error_message }}</p>{% endif %}
+
+<div class="cart-layout">
+  <section aria-label="Cart products">
+    <div class="cart-items">
+    {% for item in cart_items %}
+      {% if item.eligible %}
+      {% set product = item.product %}
+      <article id="cart-item-{{ product.id }}" class="cart-item" data-product-id="{{ product.id }}">
+        <a class="cart-photo" href="{{ url_for('market.detail', product_id=product.id) }}">
+        {% if product.image_filename and image_exists(product.image_filename) %}<img src="{{ url_for('market.media', filename=product.image_filename) }}" alt="{{ product.title }}" loading="lazy">
+        {% else %}<span class="photo-placeholder" aria-label="No product photo">No photo yet</span>{% endif %}</a>
+        <div class="cart-item-body">
+          <span class="tag">{{ categories[product.category] }}</span>
+          <h2><a href="{{ url_for('market.detail', product_id=product.id) }}">{{ product.title }}</a></h2>
+          <p class="price">${{ product.price }} <small>USD</small></p>
+          <p>{{ conditions[product.condition] }} · Active</p>
+          <p>Seller: <a href="{{ url_for('market.seller_profile', username=product.seller.username) }}">{{ product.seller.username }}</a></p>
+          <form method="post" action="{{ url_for('cart.remove', product_id=product.id) }}">{{ csrf_field() }}<button class="secondary" type="submit" aria-label="Remove {{ product.title }} from cart">Remove from cart</button></form>
+        </div>
+      </article>
+      {% else %}
+      <article id="cart-unavailable-{{ item.row.product_id }}" class="cart-item cart-unavailable">
+        <div class="cart-item-body">
+          <h2>Unavailable product</h2>
+          <p>This item is no longer available. Remove it before checkout.</p>
+          <form method="post" action="{{ url_for('cart.remove', product_id=item.row.product_id) }}">{{ csrf_field() }}<button class="secondary" type="submit" aria-label="Remove unavailable product from cart">Remove from cart</button></form>
+        </div>
+      </article>
+      {% endif %}
+    {% else %}
+      <div class="panel"><h2>Your cart is empty</h2><p><a href="{{ url_for('market.browse') }}">Explore the marketplace</a> to add a product.</p></div>
+    {% endfor %}
+    </div>
+    {{ pagination(page, pages) }}
+  </section>
+
+  <aside class="cart-summary panel" aria-labelledby="cart-summary-title">
+    <h2 id="cart-summary-title">Order summary</h2>
+    <p>These are current prices. If an item or price changes, Checkout asks you to review the cart again.</p>
+    <p>Eligible subtotal</p>
+    <p id="cart-subtotal" class="price">${{ '%.2f'|format(subtotal) }} USD</p>
+    {% if unavailable_count %}<p id="cart-unavailable-warning" class="notice">Remove unavailable products before checkout. They remain in your cart count but are not included in the subtotal.</p>{% endif %}
+    {% if total == 0 %}<p>Add at least one available product to use Checkout.</p>
+    {% elif can_checkout %}<form method="post" action="{{ url_for('cart.checkout') }}">{{ csrf_field() }}<input type="hidden" name="checkout_token" value="{{ checkout_token }}"><button type="submit">Checkout</button></form>
+    {% else %}<button type="button" disabled>Checkout</button><p>Checkout is unavailable until the cart contains only available products.</p>{% endif %}
+    <p class="tag">Classroom checkout: this creates a local order and marks each listing Sold, but it does not collect real payment.</p>
+  </aside>
+</div>
+{% endblock %}

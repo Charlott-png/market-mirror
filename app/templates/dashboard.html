@@ -1,0 +1,9 @@
+{% extends 'base.html' %}{% from 'macros.html' import card with context %}
+{% block content %}<p class="eyebrow">Your space</p><h1>Hello, {{ current_user.username }}</h1>
+<div class="stats">{% for state in ['active','sold','archived'] %}<a class="panel" href="{{ url_for('market.own_listings', status=state) }}"><strong>{{ counts.get(state,0) }}</strong> {{ state|capitalize }} listings</a>{% endfor %}<a class="panel" href="{{ url_for('engagement.saved') }}"><strong>{{ save_count }}</strong> Saved products</a><a class="panel" href="{{ url_for('engagement.inbox') }}"><strong>{{ unread }}</strong> Unread conversations</a></div>
+<div class="section-heading"><h2>Your recent listings</h2><a href="{{ url_for('market.create_listing') }}">Sell a product</a></div>
+<div class="product-grid">{% for product in products %}{{ card(product,true) }}{% else %}<p>No listings yet. Start with something you no longer need.</p>{% endfor %}</div>
+<section id="recently-viewed" aria-labelledby="recently-viewed-heading"><h2 id="recently-viewed-heading">Recently Viewed</h2>{% if recent_products %}<div class="product-grid">{% for product in recent_products %}{{ card(product) }}{% endfor %}</div>{% else %}<p>Products you open will appear here.</p>{% endif %}</section>
+<h2>Recent conversations</h2><div class="panel">{% for conversation in conversations %}<p><a href="{{ url_for('engagement.thread', conversation_id=conversation.id) }}">{{ conversation.product.title }}</a></p>{% else %}<p>No conversations yet.</p>{% endfor %}</div>
+<section id="recommendations"><h2>Discover more</h2><div class="product-grid" id="recommendation-items"></div><p id="recommendation-note" aria-live="polite"></p></section>
+{% endblock %}

@@ -1,0 +1,20 @@
+{% macro csrf_field() %}<input type="hidden" name="csrf_token" value="{{ csrf_token() }}">{% endmacro %}
+{% macro card(product, own=false) %}
+<article class="card">
+  {% set target = url_for('market.preview', product_id=product.id) if own else url_for('market.detail', product_id=product.id) %}
+  <a href="{{ target }}" class="photo-link">
+  {% if product.image_filename and image_exists(product.image_filename) %}<img src="{{ url_for('market.media', filename=product.image_filename) }}" alt="{{ product.title }}" loading="lazy">
+  {% else %}<span class="photo-placeholder" aria-label="No product photo">No photo yet</span>{% endif %}</a>
+  <div class="card-body"><span class="tag">{{ categories[product.category] }}</span><h2><a href="{{ target }}">{{ product.title }}</a></h2><p class="price">${{ product.price }} <small>USD</small></p><p>{{ conditions[product.condition] }} · {{ product.status|capitalize }}</p><p>Seller: <a href="{{ url_for('market.seller_profile', username=product.seller.username) }}">{{ product.seller.username }}</a></p>
+  {% if not own and product.status == 'active' %}
+    {% if current_user.is_authenticated and current_user.id != product.seller_id %}
+    <form class="cart-add-form" method="post" action="{{ url_for('cart.add', product_id=product.id) }}">{{ csrf_field() }}<input type="hidden" name="next" value="{{ request.full_path }}"><button type="submit">Add to Cart</button></form>
+    {% elif current_user.is_authenticated %}<p class="tag">Your listing</p>
+    {% else %}<a class="cart-sign-in" href="{{ url_for('auth.login', next=request.full_path) }}">Sign in to add to cart</a>{% endif %}
+  {% endif %}
+  </div>
+</article>
+{% endmacro %}
+{% macro pagination(page, pages, endpoint=none) %}
+{% if pages > 1 %}<nav class="pagination" aria-label="Pagination">{% if page > 1 %}<a href="{{ page_url(page - 1, endpoint) }}">Previous</a>{% endif %}<span>Page {{ page }} of {{ pages }}</span>{% if page < pages %}<a href="{{ page_url(page + 1, endpoint) }}">Next</a>{% endif %}</nav>{% endif %}
+{% endmacro %}

@@ -1,0 +1,12 @@
+<section id="mobile-account-shortcuts" class="mobile-account-shortcuts" aria-labelledby="mobile-account-shortcuts-title">
+  <h2 id="mobile-account-shortcuts-title">Account shortcuts</h2>
+  <div class="mobile-account-shortcut-list">
+    <a href="{{ url_for('engagement.dashboard') }}">Dashboard</a>
+    <a href="{{ url_for('engagement.saved') }}">Saved products</a>
+    <a id="mobile-account-cart" data-cart-count="{{ cart_count }}" href="{{ url_for('cart.review') }}">Cart <span class="cart-count" aria-label="{{ cart_count }} item{{ '' if cart_count == 1 else 's' }}">{{ cart_count }}</span></a>
+    <form method="post" action="{{ url_for('auth.logout') }}" class="mobile-account-logout">
+      <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+      <button type="submit" class="secondary">Sign out</button>
+    </form>
+  </div>
+</section>
